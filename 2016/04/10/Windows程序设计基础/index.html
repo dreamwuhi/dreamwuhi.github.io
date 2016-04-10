@@ -12,27 +12,12 @@
     
     <meta name="author" content="Dream_Whui">
     
-    <meta name="description" content="窗口程序创建的过程
-创建窗口类
-
-1WNDCLASS wndclass;
-
-注册窗口类
-
-1RegisterClass(&amp;amp;wndclass);
-
-创建窗口
-
-1hwnd = CreateWindow(...);
-
-显示窗口
-
-1ShowWindow(hwnd,iCmdShow);
-
-更新窗口">
+    <meta name="description" content="关于Windows窗口程序创建的基本过程。">
     
     
     
+    
+    <link rel="alternate" href="/atom.xml" title="Dream&#39;s Blog" type="application/atom+xml">
     
     
     <link rel="icon" href="/img/dream.ico">
@@ -56,15 +41,21 @@
 				<ul>
 					<ul>
 					 
-						<li><a href="/">首页</a></li>
+						<li><a href="/">主页 | Home</a></li>
 					
-						<li><a href="/archives">归档</a></li>
+						<li><a href="/index">索引 | Index</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
 					
 					<li>
 					
-                                            <form class="search" action=http://zhannei.baidu.com/cse/search target="_blank">
-                                            <label>Search</label>
-                                        <input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
 					
 					</li>
 				</ul>
@@ -86,7 +77,7 @@
     </p>
   <p class="article-time">
     <time datetime="2016-04-10T12:02:14.000Z" itemprop="datePublished">2016-04-10</time>
-    Updated:<time datetime="2016-04-10T12:30:44.144Z" itemprop="dateModified">2016-04-10</time>
+    Updated:<time datetime="2016-04-10T13:10:26.926Z" itemprop="dateModified">2016-04-10</time>
     
   </p>
 </header>
@@ -95,10 +86,11 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#窗口程序创建的过程"><span class="toc-number">1.</span> <span class="toc-text">窗口程序创建的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#窗口消息"><span class="toc-number">2.</span> <span class="toc-text">窗口消息</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#窗口程序创建的过程"><span class="toc-number">1.</span> <span class="toc-text">窗口程序创建的过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#窗口消息"><span class="toc-number">2.</span> <span class="toc-text">窗口消息</span></a></li></ol>
 		</div>
 		
-		<h3 id="窗口程序创建的过程"><a href="#窗口程序创建的过程" class="headerlink" title="窗口程序创建的过程"></a>窗口程序创建的过程</h3><ul>
+		<p>关于Windows窗口程序创建的基本过程。<br><a id="more"></a></p>
+<h2 id="窗口程序创建的过程"><a href="#窗口程序创建的过程" class="headerlink" title="窗口程序创建的过程"></a>窗口程序创建的过程</h2><ul>
 <li>创建窗口类</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WNDCLASS wndclass;</span><br></pre></td></tr></table></figure>
@@ -128,10 +120,10 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LRESULT CALLBACK <span class="title">WinProctor</span><span class="params">(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)</span></span>;</span><br></pre></td></tr></table></figure>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SendMessage(...);<span class="comment">//程序可以直接调用自己的窗口过程</span></span><br></pre></td></tr></table></figure>
 <p><strong>总结：窗口过程与一个窗口类相关联，窗口类是程序调用RegisterClass注册的。基于该类创建的窗口使用这个窗口过程来处理窗口的所有消息。Windows通过调用窗口过程来给窗口发送一个消息</strong></p>
-<h3 id="窗口消息"><a href="#窗口消息" class="headerlink" title="窗口消息"></a>窗口消息</h3><ul>
-<li><p>WM_PAINT<br>该消息使得客户区域重绘，以下几种情况会导致客户区域重绘，即产生WM_PAINT消息。<br>1、UpdateWindow(hwnd);<br>2、放大或者是缩小窗口（窗口类风格具有CS_HREDRAW,CS_VREDRAW）。<br>3、窗口最小化后，再复原。<br>4、窗口被其他窗口覆盖后，再复原。<br>5、使用ScrollWindow或ScrollDC函数滚动客户区的一部分。<br>6、使用InvalidateRect或InvalidateRgn函数显示产生WM_PAINT消息。</p>
+<h2 id="窗口消息"><a href="#窗口消息" class="headerlink" title="窗口消息"></a>窗口消息</h2><ul>
+<li><p><strong>WM_PAINT</strong><br>该消息使得客户区域重绘，以下几种情况会导致客户区域重绘，即产生WM_PAINT消息。<br>1、UpdateWindow(hwnd);<br>2、放大或者是缩小窗口（窗口类风格具有CS_HREDRAW,CS_VREDRAW）。<br>3、窗口最小化后，再复原。<br>4、窗口被其他窗口覆盖后，再复原。<br>5、使用ScrollWindow或ScrollDC函数滚动客户区的一部分。<br>6、使用InvalidateRect或InvalidateRgn函数显示产生WM_PAINT消息。</p>
 </li>
-<li><p>WM_DESTROY<br>该消息使得窗口清除关闭。一般在获取该消息后，添加PostQuitMessage(0); 即，在消息队列中添加一条WM_QUIT消息。上文提到，消息循环中当遇到WM_QUIT消息后，就退出循环，结束程序。 </p>
+<li><p><strong>WM_DESTROY</strong><br>该消息使得窗口清除关闭。一般在获取该消息后，添加PostQuitMessage(0); 即，在消息队列中添加一条WM_QUIT消息。上文提到，消息循环中当遇到WM_QUIT消息后，就退出循环，结束程序。 </p>
 </li>
 </ul>
   
@@ -184,7 +176,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#窗口程序创建的过程"><span class="toc-number">1.</span> <span class="toc-text">窗口程序创建的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#窗口消息"><span class="toc-number">2.</span> <span class="toc-text">窗口消息</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#窗口程序创建的过程"><span class="toc-number">1.</span> <span class="toc-text">窗口程序创建的过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#窗口消息"><span class="toc-number">2.</span> <span class="toc-text">窗口消息</span></a></li></ol>
   </div>
 
 <div id="asidepart">
@@ -220,7 +212,7 @@
 
 
   <div class="rsspart">
-	<a href="null" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
   
@@ -366,15 +358,6 @@ $(document).ready(function(){
 
 
 
-
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'null', 'null');  
-ga('send', 'pageview');
-</script>
 
 
   </body>
