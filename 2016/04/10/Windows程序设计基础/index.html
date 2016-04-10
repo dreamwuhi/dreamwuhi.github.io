@@ -12,7 +12,16 @@
     
     <meta name="author" content="Dream_Whui">
     
-    <meta name="description" content="关于Windows窗口程序创建的基本过程。">
+    <meta name="description" content="窗口程序创建的过程
+创建窗口类1WNDCLASS wndclass;
+
+注册窗口类1RegisterClass(&amp;amp;wndclass);
+
+创建窗口1hwnd = CreateWindow(...);
+
+显示窗口1ShowWindow(hwnd,iCmdShow);
+
+更新窗口1UpdateW">
     
     
     
@@ -77,7 +86,7 @@
     </p>
   <p class="article-time">
     <time datetime="2016-04-10T12:02:14.000Z" itemprop="datePublished">2016-04-10</time>
-    Updated:<time datetime="2016-04-10T13:10:26.926Z" itemprop="dateModified">2016-04-10</time>
+    Updated:<time datetime="2016-04-10T14:21:43.936Z" itemprop="dateModified">2016-04-10</time>
     
   </p>
 </header>
@@ -86,46 +95,30 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#窗口程序创建的过程"><span class="toc-number">1.</span> <span class="toc-text">窗口程序创建的过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#窗口消息"><span class="toc-number">2.</span> <span class="toc-text">窗口消息</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#窗口程序创建的过程"><span class="toc-number">1.</span> <span class="toc-text">窗口程序创建的过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建窗口类"><span class="toc-number">1.1.</span> <span class="toc-text">创建窗口类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注册窗口类"><span class="toc-number">1.2.</span> <span class="toc-text">注册窗口类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建窗口"><span class="toc-number">1.3.</span> <span class="toc-text">创建窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示窗口"><span class="toc-number">1.4.</span> <span class="toc-text">显示窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新窗口"><span class="toc-number">1.5.</span> <span class="toc-text">更新窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#消息循环"><span class="toc-number">1.6.</span> <span class="toc-text">消息循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#窗口过程"><span class="toc-number">1.7.</span> <span class="toc-text">窗口过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#窗口消息"><span class="toc-number">2.</span> <span class="toc-text">窗口消息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#WM-PAINT"><span class="toc-number">2.1.</span> <span class="toc-text">WM_PAINT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WM-DESTROY"><span class="toc-number">2.2.</span> <span class="toc-text">WM_DESTROY</span></a></li></ol></li></ol>
 		</div>
 		
-		<p>关于Windows窗口程序创建的基本过程。<br><a id="more"></a></p>
-<h2 id="窗口程序创建的过程"><a href="#窗口程序创建的过程" class="headerlink" title="窗口程序创建的过程"></a>窗口程序创建的过程</h2><ul>
-<li>创建窗口类</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WNDCLASS wndclass;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>注册窗口类</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RegisterClass(&amp;wndclass);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>创建窗口</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hwnd = CreateWindow(...);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>显示窗口</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ShowWindow(hwnd,iCmdShow);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>更新窗口</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UpdateWindow(hwnd);  <span class="comment">//产生第一条WM_PATINT消息</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>消息循环</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(GetMessage(&amp;msg,NULL,<span class="number">0</span>,<span class="number">0</span>))  <span class="comment">//获取消息，只要消息类型不为WM_QUIT，返回值是非零值</span></span><br><span class="line">&#123;</span><br><span class="line">	TranslateMessgae(&amp;msg);     <span class="comment">//翻译消息</span></span><br><span class="line">	DispatchMessage(&amp;msg);      <span class="comment">//分发消息到窗口过程</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>窗口过程<br>窗口过程在处理消息时，必须返回0。窗口过程不予处理的所有消息应该被DefWindowProc函数处理</li>
-</ul>
+		<h2 id="窗口程序创建的过程"><a href="#窗口程序创建的过程" class="headerlink" title="窗口程序创建的过程"></a>窗口程序创建的过程</h2><hr>
+<h3 id="创建窗口类"><a href="#创建窗口类" class="headerlink" title="创建窗口类"></a>创建窗口类</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WNDCLASS wndclass;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="注册窗口类"><a href="#注册窗口类" class="headerlink" title="注册窗口类"></a>注册窗口类</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RegisterClass(&amp;wndclass);</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="创建窗口"><a href="#创建窗口" class="headerlink" title="创建窗口"></a>创建窗口</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hwnd = CreateWindow(...);</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="显示窗口"><a href="#显示窗口" class="headerlink" title="显示窗口"></a>显示窗口</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ShowWindow(hwnd,iCmdShow);</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="更新窗口"><a href="#更新窗口" class="headerlink" title="更新窗口"></a>更新窗口</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UpdateWindow(hwnd);  <span class="comment">//产生第一条WM_PATINT消息</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="消息循环"><a href="#消息循环" class="headerlink" title="消息循环"></a>消息循环</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(GetMessage(&amp;msg,NULL,<span class="number">0</span>,<span class="number">0</span>))  <span class="comment">//获取消息，只要消息类型不为WM_QUIT，返回值是非零值</span></span><br><span class="line">&#123;</span><br><span class="line">	TranslateMessgae(&amp;msg);     <span class="comment">//翻译消息</span></span><br><span class="line">	DispatchMessage(&amp;msg);      <span class="comment">//分发消息到窗口过程</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="窗口过程"><a href="#窗口过程" class="headerlink" title="窗口过程"></a>窗口过程</h3><p>窗口过程在处理消息时，必须返回0。窗口过程不予处理的所有消息应该被DefWindowProc函数处理</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LRESULT CALLBACK <span class="title">WinProctor</span><span class="params">(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)</span></span>;</span><br></pre></td></tr></table></figure>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SendMessage(...);<span class="comment">//程序可以直接调用自己的窗口过程</span></span><br></pre></td></tr></table></figure>
 <p><strong>总结：窗口过程与一个窗口类相关联，窗口类是程序调用RegisterClass注册的。基于该类创建的窗口使用这个窗口过程来处理窗口的所有消息。Windows通过调用窗口过程来给窗口发送一个消息</strong></p>
-<h2 id="窗口消息"><a href="#窗口消息" class="headerlink" title="窗口消息"></a>窗口消息</h2><ul>
-<li><p><strong>WM_PAINT</strong><br>该消息使得客户区域重绘，以下几种情况会导致客户区域重绘，即产生WM_PAINT消息。<br>1、UpdateWindow(hwnd);<br>2、放大或者是缩小窗口（窗口类风格具有CS_HREDRAW,CS_VREDRAW）。<br>3、窗口最小化后，再复原。<br>4、窗口被其他窗口覆盖后，再复原。<br>5、使用ScrollWindow或ScrollDC函数滚动客户区的一部分。<br>6、使用InvalidateRect或InvalidateRgn函数显示产生WM_PAINT消息。</p>
-</li>
-<li><p><strong>WM_DESTROY</strong><br>该消息使得窗口清除关闭。一般在获取该消息后，添加PostQuitMessage(0); 即，在消息队列中添加一条WM_QUIT消息。上文提到，消息循环中当遇到WM_QUIT消息后，就退出循环，结束程序。 </p>
-</li>
-</ul>
+<hr>
+<h2 id="窗口消息"><a href="#窗口消息" class="headerlink" title="窗口消息"></a>窗口消息</h2><h3 id="WM-PAINT"><a href="#WM-PAINT" class="headerlink" title="WM_PAINT"></a>WM_PAINT</h3><p>该消息使得客户区域重绘，以下几种情况会导致客户区域重绘，即产生WM_PAINT消息。<br>1、UpdateWindow(hwnd);<br>2、放大或者是缩小窗口（窗口类风格具有CS_HREDRAW,CS_VREDRAW）。<br>3、窗口最小化后，再复原。<br>4、窗口被其他窗口覆盖后，再复原。<br>5、使用ScrollWindow或ScrollDC函数滚动客户区的一部分。<br>6、使用InvalidateRect或InvalidateRgn函数显示产生WM_PAINT消息。</p>
+<hr>
+<h3 id="WM-DESTROY"><a href="#WM-DESTROY" class="headerlink" title="WM_DESTROY"></a>WM_DESTROY</h3><p>该消息使得窗口清除关闭。一般在获取该消息后，添加PostQuitMessage(0); 即，在消息队列中添加一条WM_QUIT消息。上文提到，消息循环中当遇到WM_QUIT消息后，就退出循环，结束程序。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -176,7 +169,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#窗口程序创建的过程"><span class="toc-number">1.</span> <span class="toc-text">窗口程序创建的过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#窗口消息"><span class="toc-number">2.</span> <span class="toc-text">窗口消息</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#窗口程序创建的过程"><span class="toc-number">1.</span> <span class="toc-text">窗口程序创建的过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建窗口类"><span class="toc-number">1.1.</span> <span class="toc-text">创建窗口类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注册窗口类"><span class="toc-number">1.2.</span> <span class="toc-text">注册窗口类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建窗口"><span class="toc-number">1.3.</span> <span class="toc-text">创建窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示窗口"><span class="toc-number">1.4.</span> <span class="toc-text">显示窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新窗口"><span class="toc-number">1.5.</span> <span class="toc-text">更新窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#消息循环"><span class="toc-number">1.6.</span> <span class="toc-text">消息循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#窗口过程"><span class="toc-number">1.7.</span> <span class="toc-text">窗口过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#窗口消息"><span class="toc-number">2.</span> <span class="toc-text">窗口消息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#WM-PAINT"><span class="toc-number">2.1.</span> <span class="toc-text">WM_PAINT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WM-DESTROY"><span class="toc-number">2.2.</span> <span class="toc-text">WM_DESTROY</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">

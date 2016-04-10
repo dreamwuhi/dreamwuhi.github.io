@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Dream&#39;s Blog</title>
+  <subtitle>One day...</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2016-04-10T12:38:01.148Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Dream_Whui</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>duilib开发QQ界面</title>
+    <link href="http://yoursite.com/2016/04/10/duilib%E5%BC%80%E5%8F%91QQ%E7%95%8C%E9%9D%A2/"/>
+    <id>http://yoursite.com/2016/04/10/duilib开发QQ界面/</id>
+    <published>2016-04-10T12:38:01.000Z</published>
+    <updated>2016-04-10T12:38:01.148Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Windows程序设计基础</title>
+    <link href="http://yoursite.com/2016/04/10/Windows%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80/"/>
+    <id>http://yoursite.com/2016/04/10/Windows程序设计基础/</id>
+    <published>2016-04-10T12:02:14.000Z</published>
+    <updated>2016-04-10T14:21:43.936Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;窗口程序创建的过程&quot;&gt;&lt;a href=&quot;#窗口程序创建的过程&quot; class=&quot;headerlink&quot; title=&quot;窗口程序创建的过程&quot;&gt;&lt;/a&gt;窗口程序创建的过程&lt;/h2&gt;&lt;hr&gt;
+&lt;h3 id=&quot;创建窗口类&quot;&gt;&lt;a href=&quot;#创建窗口类&quot; class=&quot;headerlink&quot; title=&quot;创建窗口类&quot;&gt;&lt;/a&gt;创建窗口类&lt;/h3&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;WNDCLASS wndclass;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;注册窗口类&quot;&gt;&lt;a href=&quot;#注册窗口类&quot; class=&quot;headerlink&quot; title=&quot;注册窗口类&quot;&gt;&lt;/a&gt;注册窗口类&lt;/h3&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;RegisterClass(&amp;amp;wndclass);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;创建窗口&quot;&gt;&lt;a href=&quot;#创建窗口&quot; class=&quot;headerlink&quot; title=&quot;创建窗口&quot;&gt;&lt;/a&gt;创建窗口&lt;/h3&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;hwnd = CreateWindow(...);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;显示窗口&quot;&gt;&lt;a href=&quot;#显示窗口&quot; class=&quot;headerlink&quot; title=&quot;显示窗口&quot;&gt;&lt;/a&gt;显示窗口&lt;/h3&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ShowWindow(hwnd,iCmdShow);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;更新窗口&quot;&gt;&lt;a href=&quot;#更新窗口&quot; class=&quot;headerlink&quot; title=&quot;更新窗口&quot;&gt;&lt;/a&gt;更新窗口&lt;/h3&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;UpdateWindow(hwnd);  &lt;span class=&quot;comment&quot;&gt;//产生第一条WM_PATINT消息&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;消息循环&quot;&gt;&lt;a href=&quot;#消息循环&quot; class=&quot;headerlink&quot; title=&quot;消息循环&quot;&gt;&lt;/a&gt;消息循环&lt;/h3&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt;(GetMessage(&amp;amp;msg,NULL,&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;))  &lt;span class=&quot;comment&quot;&gt;//获取消息，只要消息类型不为WM_QUIT，返回值是非零值&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	TranslateMessgae(&amp;amp;msg);     &lt;span class=&quot;comment&quot;&gt;//翻译消息&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	DispatchMessage(&amp;amp;msg);      &lt;span class=&quot;comment&quot;&gt;//分发消息到窗口过程&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;窗口过程&quot;&gt;&lt;a href=&quot;#窗口过程&quot; class=&quot;headerlink&quot; title=&quot;窗口过程&quot;&gt;&lt;/a&gt;窗口过程&lt;/h3&gt;&lt;p&gt;窗口过程在处理消息时，必须返回0。窗口过程不予处理的所有消息应该被DefWindowProc函数处理&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;LRESULT CALLBACK &lt;span class=&quot;title&quot;&gt;WinProctor&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;SendMessage(...);&lt;span class=&quot;comment&quot;&gt;//程序可以直接调用自己的窗口过程&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;总结：窗口过程与一个窗口类相关联，窗口类是程序调用RegisterClass注册的。基于该类创建的窗口使用这个窗口过程来处理窗口的所有消息。Windows通过调用窗口过程来给窗口发送一个消息&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;窗口消息&quot;&gt;&lt;a href=&quot;#窗口消息&quot; class=&quot;headerlink&quot; title=&quot;窗口消息&quot;&gt;&lt;/a&gt;窗口消息&lt;/h2&gt;&lt;h3 id=&quot;WM-PAINT&quot;&gt;&lt;a href=&quot;#WM-PAINT&quot; class=&quot;headerlink&quot; title=&quot;WM_PAINT&quot;&gt;&lt;/a&gt;WM_PAINT&lt;/h3&gt;&lt;p&gt;该消息使得客户区域重绘，以下几种情况会导致客户区域重绘，即产生WM_PAINT消息。&lt;br&gt;1、UpdateWindow(hwnd);&lt;br&gt;2、放大或者是缩小窗口（窗口类风格具有CS_HREDRAW,CS_VREDRAW）。&lt;br&gt;3、窗口最小化后，再复原。&lt;br&gt;4、窗口被其他窗口覆盖后，再复原。&lt;br&gt;5、使用ScrollWindow或ScrollDC函数滚动客户区的一部分。&lt;br&gt;6、使用InvalidateRect或InvalidateRgn函数显示产生WM_PAINT消息。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;WM-DESTROY&quot;&gt;&lt;a href=&quot;#WM-DESTROY&quot; class=&quot;headerlink&quot; title=&quot;WM_DESTROY&quot;&gt;&lt;/a&gt;WM_DESTROY&lt;/h3&gt;&lt;p&gt;该消息使得窗口清除关闭。一般在获取该消息后，添加PostQuitMessage(0); 即，在消息队列中添加一条WM_QUIT消息。上文提到，消息循环中当遇到WM_QUIT消息后，就退出循环，结束程序。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;窗口程序创建的过程&quot;&gt;&lt;a href=&quot;#窗口程序创建的过程&quot; class=&quot;headerlink&quot; title=&quot;窗口程序创建的过程&quot;&gt;&lt;/a&gt;窗口程序创建的过程&lt;/h2&gt;&lt;hr&gt;
+&lt;h3 id=&quot;创建窗口类&quot;&gt;&lt;a href=&quot;#创建窗口类&quot; class=&quot;h
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>duilib开发微信界面</title>
+    <link href="http://yoursite.com/2016/04/10/duilib%E5%BC%80%E5%8F%91%E5%BE%AE%E4%BF%A1%E7%95%8C%E9%9D%A2/"/>
+    <id>http://yoursite.com/2016/04/10/duilib开发微信界面/</id>
+    <published>2016-04-10T10:16:23.000Z</published>
+    <updated>2016-04-10T12:38:28.700Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;采用Duilib开源框架开发PC端微信&quot;&gt;&lt;a href=&quot;#采用Duilib开源框架开发PC端微信&quot; class=&quot;headerlink&quot; title=&quot;采用Duilib开源框架开发PC端微信&quot;&gt;&lt;/a&gt;采用Duilib开源框架开发PC端微信&lt;/h2&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;采用Duilib开源框架开发PC端微信&quot;&gt;&lt;a href=&quot;#采用Duilib开源框架开发PC端微信&quot; class=&quot;headerlink&quot; title=&quot;采用Duilib开源框架开发PC端微信&quot;&gt;&lt;/a&gt;采用Duilib开源框架开发PC端微信&lt;/h2&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
