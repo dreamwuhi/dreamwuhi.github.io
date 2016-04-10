@@ -7,29 +7,10 @@
   <meta name="360-site-verification" content="67fbcc5a67f4c65c057315b28fa0b2c8" />
 <meta name="google-site-verification" content="2GzxQ0VtXwTSUdmGm6DzcmhTzM_I9QmzCb_pzpMzD88" />
   
-    <title>Windows程序设计基础 | Dream&#39;s Blog</title>
+    <title>duilib开发QQ界面 | Dream&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Dream_Whui">
-    
-    <meta name="description" content="窗口程序创建的过程
-创建窗口类
-
-1WNDCLASS wndclass;
-
-注册窗口类
-
-1RegisterClass(&amp;amp;wndclass);
-
-创建窗口
-
-1hwnd = CreateWindow(...);
-
-显示窗口
-
-1ShowWindow(hwnd,iCmdShow);
-
-更新窗口">
     
     
     
@@ -78,15 +59,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/04/10/Windows程序设计基础/" title="Windows程序设计基础" itemprop="url">Windows程序设计基础</a>
+      <a href="/2016/04/10/duilib开发QQ界面/" title="duilib开发QQ界面" itemprop="url">duilib开发QQ界面</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="Dream_Whui">Dream_Whui</a>
     </p>
   <p class="article-time">
-    <time datetime="2016-04-10T12:02:14.000Z" itemprop="datePublished">2016-04-10</time>
-    Updated:<time datetime="2016-04-10T12:30:44.144Z" itemprop="dateModified">2016-04-10</time>
+    <time datetime="2016-04-10T12:38:01.000Z" itemprop="datePublished">2016-04-10</time>
+    Updated:<time datetime="2016-04-10T12:38:01.148Z" itemprop="dateModified">2016-04-10</time>
     
   </p>
 </header>
@@ -95,46 +76,10 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#窗口程序创建的过程"><span class="toc-number">1.</span> <span class="toc-text">窗口程序创建的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#窗口消息"><span class="toc-number">2.</span> <span class="toc-text">窗口消息</span></a></li></ol>
+		
 		</div>
 		
-		<h3 id="窗口程序创建的过程"><a href="#窗口程序创建的过程" class="headerlink" title="窗口程序创建的过程"></a>窗口程序创建的过程</h3><ul>
-<li>创建窗口类</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WNDCLASS wndclass;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>注册窗口类</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RegisterClass(&amp;wndclass);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>创建窗口</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hwnd = CreateWindow(...);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>显示窗口</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ShowWindow(hwnd,iCmdShow);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>更新窗口</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UpdateWindow(hwnd);  <span class="comment">//产生第一条WM_PATINT消息</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>消息循环</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(GetMessage(&amp;msg,NULL,<span class="number">0</span>,<span class="number">0</span>))  <span class="comment">//获取消息，只要消息类型不为WM_QUIT，返回值是非零值</span></span><br><span class="line">&#123;</span><br><span class="line">	TranslateMessgae(&amp;msg);     <span class="comment">//翻译消息</span></span><br><span class="line">	DispatchMessage(&amp;msg);      <span class="comment">//分发消息到窗口过程</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>窗口过程<br>窗口过程在处理消息时，必须返回0。窗口过程不予处理的所有消息应该被DefWindowProc函数处理</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LRESULT CALLBACK <span class="title">WinProctor</span><span class="params">(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)</span></span>;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SendMessage(...);<span class="comment">//程序可以直接调用自己的窗口过程</span></span><br></pre></td></tr></table></figure>
-<p><strong>总结：窗口过程与一个窗口类相关联，窗口类是程序调用RegisterClass注册的。基于该类创建的窗口使用这个窗口过程来处理窗口的所有消息。Windows通过调用窗口过程来给窗口发送一个消息</strong></p>
-<h3 id="窗口消息"><a href="#窗口消息" class="headerlink" title="窗口消息"></a>窗口消息</h3><ul>
-<li><p>WM_PAINT<br>该消息使得客户区域重绘，以下几种情况会导致客户区域重绘，即产生WM_PAINT消息。<br>1、UpdateWindow(hwnd);<br>2、放大或者是缩小窗口（窗口类风格具有CS_HREDRAW,CS_VREDRAW）。<br>3、窗口最小化后，再复原。<br>4、窗口被其他窗口覆盖后，再复原。<br>5、使用ScrollWindow或ScrollDC函数滚动客户区的一部分。<br>6、使用InvalidateRect或InvalidateRgn函数显示产生WM_PAINT消息。</p>
-</li>
-<li><p>WM_DESTROY<br>该消息使得窗口清除关闭。一般在获取该消息后，添加PostQuitMessage(0); 即，在消息队列中添加一条WM_QUIT消息。上文提到，消息循环中当遇到WM_QUIT消息后，就退出循环，结束程序。 </p>
-</li>
-</ul>
-  
+		  
 	</div>
 		<footer class="article-footer clearfix">
 
@@ -143,7 +88,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2016/04/10/Windows程序设计基础/" data-title="Windows程序设计基础 | Dream&#39;s Blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2016/04/10/duilib开发QQ界面/" data-title="duilib开发QQ界面 | Dream&#39;s Blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -152,19 +97,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/04/10/duilib开发QQ界面/" title="duilib开发QQ界面">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  duilib开发QQ界面</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/04/10/duilib开发微信界面/"  title="duilib开发微信界面">
+<a href="/2016/04/10/Windows程序设计基础/"  title="Windows程序设计基础">
  <strong>NEXT:</strong><br/> 
- <span>duilib开发微信界面
+ <span>Windows程序设计基础
 </span>
 </a>
 </div>
@@ -174,7 +111,7 @@
 	
 <section class="comment">
 	
-	<div class="ds-thread" data-title="Windows程序设计基础" data-thread-key="Windows程序设计基础" data-author-key="Dream_Whui" data-url="http://yoursite.com/post/Windows程序设计基础"></div>
+	<div class="ds-thread" data-title="duilib开发QQ界面" data-thread-key="duilib开发QQ界面" data-author-key="Dream_Whui" data-url="http://yoursite.com/post/duilib开发QQ界面"></div>
 	
 </section>
 
@@ -184,7 +121,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#窗口程序创建的过程"><span class="toc-number">1.</span> <span class="toc-text">窗口程序创建的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#窗口消息"><span class="toc-number">2.</span> <span class="toc-text">窗口消息</span></a></li></ol>
+  
   </div>
 
 <div id="asidepart">
