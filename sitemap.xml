@@ -2,9 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/04/10/Windows%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80/</loc>
+    
+    <lastmod>2016-04-11T10:18:10.287Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/04/10/duilib%E5%BC%80%E5%8F%91%E5%BE%AE%E4%BF%A1%E7%95%8C%E9%9D%A2/</loc>
+    
+    <lastmod>2016-04-11T10:17:59.198Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/04/10/duilib%E5%BC%80%E5%8F%91QQ%E7%95%8C%E9%9D%A2/</loc>
+    
+    <lastmod>2016-04-11T10:17:44.030Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/category/index.html</loc>
+    
+    <lastmod>2016-04-11T10:13:10.816Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/04/11/C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86(1)/</loc>
     
-    <lastmod>2016-04-11T10:02:10.231Z</lastmod>
+    <lastmod>2016-04-11T10:08:41.235Z</lastmod>
     
   </url>
   
@@ -12,13 +40,6 @@
     <loc>http://yoursite.com/css/personal-style.css</loc>
     
     <lastmod>2016-04-11T03:16:10.506Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/category/index.html</loc>
-    
-    <lastmod>2016-04-10T16:33:38.855Z</lastmod>
     
   </url>
   
@@ -47,27 +68,6 @@
     <loc>http://yoursite.com/tag/index.html</loc>
     
     <lastmod>2016-04-10T16:01:08.333Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2016/04/10/Windows%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80/</loc>
-    
-    <lastmod>2016-04-10T14:21:43.936Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2016/04/10/duilib%E5%BC%80%E5%8F%91%E5%BE%AE%E4%BF%A1%E7%95%8C%E9%9D%A2/</loc>
-    
-    <lastmod>2016-04-10T12:38:28.700Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2016/04/10/duilib%E5%BC%80%E5%8F%91QQ%E7%95%8C%E9%9D%A2/</loc>
-    
-    <lastmod>2016-04-10T12:38:01.148Z</lastmod>
     
   </url>
   
