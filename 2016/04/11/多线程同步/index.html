@@ -15,19 +15,25 @@
     <meta name="keywords" content="多线程，C++," />
   
 
-  <meta name="description" content="原子访问指的是一个线程在访问某个资源的同时能够保证没有其他线程会在同一时刻访问同一资源。Interlocked系列的函数可以保证是原子操作。
-123456CRITICAL_SECTION g_cs 		//初始化关键代码段结构InitializeCriticalSection(g_cs);    //初始化EnterCriticalSection(&amp;amp;g_cs);    //进入关键代码段">
+  <meta name="description" content="原子访问
+指的是一个线程在访问某个资源的同时能够保证没有其他线程会在同一时刻访问同一资源。Interlocked系列的函数可以保证是原子操作。
+
+123456CRITICAL_SECTION g_cs 		//初始化关键代码段结构InitializeCriticalSection(g_cs);    //初始化EnterCriticalSection(&amp;amp;g_cs);    //进入关键代">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多线程同步">
 <meta property="og:url" content="http://dreamwuhi.github.io/2016/04/11/多线程同步/index.html">
 <meta property="og:site_name" content="Dream's Blog">
-<meta property="og:description" content="原子访问指的是一个线程在访问某个资源的同时能够保证没有其他线程会在同一时刻访问同一资源。Interlocked系列的函数可以保证是原子操作。
-123456CRITICAL_SECTION g_cs 		//初始化关键代码段结构InitializeCriticalSection(g_cs);    //初始化EnterCriticalSection(&amp;amp;g_cs);    //进入关键代码段">
-<meta property="og:updated_time" content="2016-04-11T15:48:48.133Z">
+<meta property="og:description" content="原子访问
+指的是一个线程在访问某个资源的同时能够保证没有其他线程会在同一时刻访问同一资源。Interlocked系列的函数可以保证是原子操作。
+
+123456CRITICAL_SECTION g_cs 		//初始化关键代码段结构InitializeCriticalSection(g_cs);    //初始化EnterCriticalSection(&amp;amp;g_cs);    //进入关键代">
+<meta property="og:updated_time" content="2016-04-11T15:57:05.511Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程同步">
-<meta name="twitter:description" content="原子访问指的是一个线程在访问某个资源的同时能够保证没有其他线程会在同一时刻访问同一资源。Interlocked系列的函数可以保证是原子操作。
-123456CRITICAL_SECTION g_cs 		//初始化关键代码段结构InitializeCriticalSection(g_cs);    //初始化EnterCriticalSection(&amp;amp;g_cs);    //进入关键代码段">
+<meta name="twitter:description" content="原子访问
+指的是一个线程在访问某个资源的同时能够保证没有其他线程会在同一时刻访问同一资源。Interlocked系列的函数可以保证是原子操作。
+
+123456CRITICAL_SECTION g_cs 		//初始化关键代码段结构InitializeCriticalSection(g_cs);    //初始化EnterCriticalSection(&amp;amp;g_cs);    //进入关键代">
 
   
 
@@ -156,7 +162,7 @@ var _hmt = _hmt || [];
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原子访问"><span class="toc-text">原子访问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高级线程同步"><span class="toc-text">高级线程同步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关键代码段"><span class="toc-text">关键代码段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关键段与旋转锁"><span class="toc-text">关键段与旋转锁</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#原子访问"><span class="toc-text">原子访问</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#高级线程同步"><span class="toc-text">高级线程同步</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关键代码段"><span class="toc-text">关键代码段</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关键段与旋转锁"><span class="toc-text">关键段与旋转锁</span></a></li></ol>
   </div>
 
 
@@ -195,18 +201,27 @@ var _hmt = _hmt || [];
   <div class="article-content">
     
       <hr>
-<h2 id="原子访问"><a href="#原子访问" class="headerlink" title="原子访问"></a><strong>原子访问</strong></h2><p>指的是一个线程在访问某个资源的同时能够保证没有其他线程会在同一时刻访问同一资源。<br>Interlocked系列的函数可以保证是原子操作。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CRITICAL_SECTION g_cs 		//初始化关键代码段结构</span><br><span class="line">InitializeCriticalSection(g_cs);    //初始化</span><br><span class="line">EnterCriticalSection(&amp;g_cs);    //进入关键代码段</span><br><span class="line">...</span><br><span class="line">LeaveCriticalSection(&amp;g_cs);    //离开关键代码段</span><br><span class="line">DeleteCriticalSection(g_cs);    //删除</span><br></pre></td></tr></table></figure>
+<h1 id="原子访问"><a href="#原子访问" class="headerlink" title="原子访问"></a><strong>原子访问</strong></h1><ul>
+<li>指的是一个线程在访问某个资源的同时能够保证没有其他线程会在同一时刻访问同一资源。<br>Interlocked系列的函数可以保证是原子操作。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CRITICAL_SECTION g_cs 		<span class="comment">//初始化关键代码段结构</span></span><br><span class="line">InitializeCriticalSection(g_cs);    <span class="comment">//初始化</span></span><br><span class="line">EnterCriticalSection(&amp;g_cs);    <span class="comment">//进入关键代码段</span></span><br><span class="line">...</span><br><span class="line">LeaveCriticalSection(&amp;g_cs);    <span class="comment">//离开关键代码段</span></span><br><span class="line">DeleteCriticalSection(g_cs);    <span class="comment">//删除</span></span><br></pre></td></tr></table></figure>
 <hr>
 <hr>
-<h2 id="高级线程同步"><a href="#高级线程同步" class="headerlink" title="高级线程同步"></a><strong>高级线程同步</strong></h2><p>当线程想要访问某一共享资源的时候，线程必须调用系统函数，将线程想要访问的东西作为参数传递给函数。如果操作系统检测到资源可以被访问，那么这个函数会立即返回。这样线程就编程可调度状态。如果无法访问该共享资源，那么系统会将线程切换到等待状态，使线程变得不可调度，从而避免线程浪费CPU的时间。</p>
+<h1 id="高级线程同步"><a href="#高级线程同步" class="headerlink" title="高级线程同步"></a><strong>高级线程同步</strong></h1><ul>
+<li>当线程想要访问某一共享资源的时候，线程必须调用系统函数，将线程想要访问的东西作为参数传递给函数。如果操作系统检测到资源可以被访问，那么这个函数会立即返回。这样线程就编程可调度状态。如果无法访问该共享资源，那么系统会将线程切换到等待状态，使线程变得不可调度，从而避免线程浪费CPU的时间。</li>
+</ul>
 <hr>
 <hr>
-<h2 id="关键代码段"><a href="#关键代码段" class="headerlink" title="关键代码段"></a><strong>关键代码段</strong></h2><p>这种方式让多行代码以原子的方式对资源进行操控。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CRITICAL_SECTION g_cs //初始化关键代码段结构</span><br><span class="line">InitializeCriticalSection(g_cs);    //初始化</span><br><span class="line">EnterCriticalSection(&amp;g_cs);    //进入关键代码段</span><br><span class="line">...</span><br><span class="line">LeaveCriticalSection(&amp;g_cs);    //离开关键代码段</span><br><span class="line">DeleteCriticalSection(g_cs);    //删除</span><br></pre></td></tr></table></figure></p>
+<h1 id="关键代码段"><a href="#关键代码段" class="headerlink" title="关键代码段"></a><strong>关键代码段</strong></h1><ul>
+<li>这种方式让多行代码以原子的方式对资源进行操控。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CRITICAL_SECTION g_cs <span class="comment">//初始化关键代码段结构</span></span><br><span class="line">InitializeCriticalSection(g_cs);    <span class="comment">//初始化</span></span><br><span class="line">EnterCriticalSection(&amp;g_cs);    <span class="comment">//进入关键代码段</span></span><br><span class="line">...</span><br><span class="line">LeaveCriticalSection(&amp;g_cs);    <span class="comment">//离开关键代码段</span></span><br><span class="line">DeleteCriticalSection(g_cs);    <span class="comment">//删除</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 <hr>
 <hr>
-<h2 id="关键段与旋转锁"><a href="#关键段与旋转锁" class="headerlink" title="关键段与旋转锁"></a><strong>关键段与旋转锁</strong></h2><p>当线程试图进入一个关键段，但这个关键段正被另一个线程占用的时候，函数会立即把调用线程切换到等待状态。这意味着线程必须从用户模式切换到内核模式（消耗大约1000个CPU周期）。这个切换的开销非常大。在配有多处理器的机器中，当前占用资源的线程可能在另一个线程完全切换到内核状态前就释放了占用的资源。如果真发生这种情况，那么会消耗大量的CPU周期。<br>因此在关键代码段中加入旋转锁来解决此问题。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BOOL InitializeCriticalSectionAndSpinCount(PCRITICAL_SECTION pcs, DWORD dwSpinCount);//dwSpinCount 表示旋转锁循环的次数</span><br></pre></td></tr></table></figure>
+<h1 id="关键段与旋转锁"><a href="#关键段与旋转锁" class="headerlink" title="关键段与旋转锁"></a><strong>关键段与旋转锁</strong></h1><ul>
+<li>当线程试图进入一个关键段，但这个关键段正被另一个线程占用的时候，函数会立即把调用线程切换到等待状态。这意味着线程必须从用户模式切换到内核模式（消耗大约1000个CPU周期）。这个切换的开销非常大。在配有多处理器的机器中，当前占用资源的线程可能在另一个线程完全切换到内核状态前就释放了占用的资源。如果真发生这种情况，那么会消耗大量的CPU周期。<br>因此在关键代码段中加入旋转锁来解决此问题。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">InitializeCriticalSectionAndSpinCount</span><span class="params">(PCRITICAL_SECTION pcs, DWORD dwSpinCount)</span></span>;<span class="comment">//dwSpinCount 表示旋转锁循环的次数</span></span><br></pre></td></tr></table></figure>
 <hr>
 
     
