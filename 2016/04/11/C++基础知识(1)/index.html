@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+
+
+  <html class="dark">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>C++基础知识(1) | Dream&#39;s Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="forsigner,Hexo主题,C/C++,用户体验,设计" />
+  
+
+  <meta name="description" content="New和Delete
+内置类型对象或未提供默认构造函数的类类型对象必须显示初始化
+12int* a = new int;		//a未初始化int* b = new int();		//b初始化为0
+
+delete后，应该将指针赋值为NULL，否则该指针成为“悬垂指针”，悬垂指针是指向曾经存放对象的内存，但该对象已经不再存在了。
+
+C++保证：删除0值的指针是安全的
+
+显示类型转换
+调用方式： ca">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++基础知识(1)">
+<meta property="og:url" content="http://yoursite.com/2016/04/11/C++基础知识(1)/index.html">
+<meta property="og:site_name" content="Dream's Blog">
+<meta property="og:description" content="New和Delete
+内置类型对象或未提供默认构造函数的类类型对象必须显示初始化
+12int* a = new int;		//a未初始化int* b = new int();		//b初始化为0
+
+delete后，应该将指针赋值为NULL，否则该指针成为“悬垂指针”，悬垂指针是指向曾经存放对象的内存，但该对象已经不再存在了。
+
+C++保证：删除0值的指针是安全的
+
+显示类型转换
+调用方式： ca">
+<meta property="og:updated_time" content="2016-04-11T08:14:04.026Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++基础知识(1)">
+<meta name="twitter:description" content="New和Delete
+内置类型对象或未提供默认构造函数的类类型对象必须显示初始化
+12int* a = new int;		//a未初始化int* b = new int();		//b初始化为0
+
+delete后，应该将指针赋值为NULL，否则该指针成为“悬垂指针”，悬垂指针是指向曾经存放对象的内存，但该对象已经不再存在了。
+
+C++保证：删除0值的指针是安全的
+
+显示类型转换
+调用方式： ca">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+  <link href="/css/styles.css?v=7330865e" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+<!-- Baidu Tongji -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a8c85de1e0c8ae1a4f0b0ed0219c4f56";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<!-- End Google Analytics -->
+
+</head>
+
+<body>
+
+  
+    <a href="#modal-one" class="toolbox-mobile">盒子</a>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#New和Delete"><span class="toc-text">New和Delete</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示类型转换"><span class="toc-text">显示类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类成员函数的重载"><span class="toc-text">类成员函数的重载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类的inline函数"><span class="toc-text">类的inline函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类的成员使用类声明"><span class="toc-text">类的成员使用类声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类的构造函数初始化"><span class="toc-text">类的构造函数初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数的隐式转换"><span class="toc-text">构造函数的隐式转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#友元"><span class="toc-text">友元</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#static类成员"><span class="toc-text">static类成员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复制构造函数"><span class="toc-text">复制构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#智能指针"><span class="toc-text">智能指针</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#protected成员"><span class="toc-text">protected成员</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-C++基础知识(1)" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">C++基础知识(1)</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.04.11</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Dream_Whui</span>
+        </span>
+      
+
+      
+
+
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h3 id="New和Delete"><a href="#New和Delete" class="headerlink" title="New和Delete"></a>New和Delete</h3><ul>
+<li><p>内置类型对象或未提供默认构造函数的类类型对象必须显示初始化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int* a = new int;		//a未初始化</span><br><span class="line">int* b = new int();		//b初始化为0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>delete后，应该将指针赋值为NULL，否则该指针成为“悬垂指针”，悬垂指针是指向曾经存放对象的内存，但该对象已经不再存在了。</p>
+</li>
+<li>C++保证：删除0值的指针是安全的</li>
+</ul>
+<h3 id="显示类型转换"><a href="#显示类型转换" class="headerlink" title="显示类型转换"></a>显示类型转换</h3><ul>
+<li><strong>调用方式：</strong> cast-name<type>(expression)</type></li>
+<li><p><strong>static_cast</strong><br>  编译器隐式的执行任何类型转换</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">void* p = &amp;d;</span><br><span class="line">double* dp = static_cast&lt;double*&gt;p;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>dynamic_cast</strong></p>
+</li>
+<li><strong>const_cast</strong><br>  转换掉表达式的const性质</li>
+<li><strong>reinterpret_cast</strong></li>
+</ul>
+<h3 id="类成员函数的重载"><a href="#类成员函数的重载" class="headerlink" title="类成员函数的重载"></a>类成员函数的重载</h3><ul>
+<li>函数名相同，函数的参数不同，返回值可以不同。注意：基于成员函数是否为const,可以重载一个成员函数</li>
+</ul>
+<h3 id="类的inline函数"><a href="#类的inline函数" class="headerlink" title="类的inline函数"></a>类的inline函数</h3><ul>
+<li>编译器会自动展开函数的定义。注意点：一般函数的代码量很小，且该函数会被经常调用。同时，该函数的定义必须被调用它的源文件可见。通常，内联函数的定义是放在某公共头文件中。</li>
+</ul>
+<h3 id="类的成员使用类声明"><a href="#类的成员使用类声明" class="headerlink" title="类的成员使用类声明"></a>类的成员使用类声明</h3><ul>
+<li>只有当类的定义已经在前面出现过数据成员才能被指定为该类类型。如果该类型是不完全类型（即只声明未定义），那么数据成员只能是指向该类类型的指针或者是引用。</li>
+</ul>
+<h3 id="类的构造函数初始化"><a href="#类的构造函数初始化" class="headerlink" title="类的构造函数初始化"></a>类的构造函数初始化</h3><ul>
+<li>构造函数的初始化列表会在构造函数体内语句之前运行。</li>
+<li>如果没有显式初始化列表，那么对于类类型的成员变量使用该成员变量的默认构造函数初始化。对于内置类型或者是复合类型的成员变量根据对象是否为全局而定。（全局对象则会初始化，局部对象不会初始化）</li>
+<li><strong>注意</strong>：对于const成员变量或者是引用类型成员变量及没有默认构造函数的类类型成员变量必须在显式初始化列表。</li>
+</ul>
+<h3 id="构造函数的隐式转换"><a href="#构造函数的隐式转换" class="headerlink" title="构造函数的隐式转换"></a>构造函数的隐式转换</h3><ul>
+<li>一般只带一个参数的构造函数会出现隐式转换，或者是构造函数的第二参数带有默认值</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class A</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	 A()</span><br><span class="line">	 &#123;&#125;</span><br><span class="line">	 A(int a)</span><br><span class="line">	 &#123;</span><br><span class="line">		num = a;</span><br><span class="line">	 &#125;</span><br><span class="line">private:</span><br><span class="line">	int num;	 	</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">A a = 12 //隐式的调用构造函数，再调用复制构造函数</span><br><span class="line">A b(12); //显示的调用构造函数</span><br></pre></td></tr></table></figure>
+<ul>
+<li>隐式转换一般会带来不好的影响，最好的处理方法是加上<strong>explicit</strong>关键字，指定构造函数不能隐式转换。</li>
+</ul>
+<h3 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h3><ul>
+<li>允许一个类将对其非公有成员的访问授予指定的函数或类</li>
+</ul>
+<h3 id="static类成员"><a href="#static类成员" class="headerlink" title="static类成员"></a>static类成员</h3><ul>
+<li>非static数据成员存在于类类型的每一个对象中。static数据成员独立于该类的任意对象而存在；每个static数据成员与类关联的对象，并不与类的对象关联。</li>
+<li>static成员函数只能访问static成员变量，不能直接使用非static成员变量。</li>
+</ul>
+<h3 id="复制构造函数"><a href="#复制构造函数" class="headerlink" title="复制构造函数"></a>复制构造函数</h3><ul>
+<li><p>调用时间</p>
+<ul>
+<li>根据另一个同类型的对象显示或者是隐式初始化一个对象</li>
+<li>复制一个对象，将它作为实参传给一个函数</li>
+<li>从函数返回时复制对象</li>
+<li><p>初始化顺序容器中的元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">std::vector&lt;std::string&gt;(10);//先调用string的默认构造函数，再调用复制构造函数</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据元素初始化式初列表初始化数组元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A a[] = &#123;std::string(&quot;abc&quot;),std::string(&quot;bca&quot;)&#125;;</span><br><span class="line">//首先调用A中接受string形参的构造函数初始化一个临时对象，再调用A的复制构造函数初始化</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>具体例子</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">string null_book = &quot;99999&quot;;//首先调用接受一个C风格字符串形参的构造函数，再调用复制构造函数</span><br><span class="line">string empty_copy = string();//首先调用默认构造函数，再调用复制构造函数</span><br></pre></td></tr></table></figure>
+<h3 id="智能指针"><a href="#智能指针" class="headerlink" title="智能指针"></a>智能指针</h3><ul>
+<li>当类中含有指针成员的时候，不重写赋值构造函数，复制构造函数，析构函数的话，很容易使程序崩溃</li>
+<li><strong>原因：</strong> 编译器为我们合成的复制、赋值函数，都只是浅层拷贝，不是深层拷贝（指针指向同一个对象），因此往往会在析构的时候，出现异常。</li>
+<li><strong>解决方法1：</strong>定义智能指针，引入<strong>使用计数</strong>概念</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">class U_Ptr</span><br><span class="line">&#123;</span><br><span class="line">private:</span><br><span class="line">	friend class HasPtr;</span><br><span class="line">	int *ip;</span><br><span class="line">	size_t use;//使用计数</span><br><span class="line">	U_Ptr(int* p) : ip(p) , use(1) </span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	~U_Ptr()</span><br><span class="line">	&#123;</span><br><span class="line">		delete ip;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class HasPtr</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	HasPtr(int*p , int i) : ptr(new U_Ptr(p)) , val(i) </span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	HasPtr(const HasPtr&amp; orig) : ptr(orig.ptr), val(orig.val) </span><br><span class="line">	&#123;</span><br><span class="line">		ptr-&gt;use++;</span><br><span class="line">	&#125;</span><br><span class="line">	HasPtr&amp; operator=(const HasPtr&amp; rhs)</span><br><span class="line">	&#123;</span><br><span class="line">		++rhs.ptr-&gt;use;</span><br><span class="line">		if(--ptr-&gt;use == 0)</span><br><span class="line">			delete ptr;</span><br><span class="line">		ptr = rhs.ptr;</span><br><span class="line">		val = rhs.val;</span><br><span class="line">		return *this;</span><br><span class="line">	&#125;</span><br><span class="line">	~HasPtr()</span><br><span class="line">	&#123;</span><br><span class="line">		if(--ptr-&gt;use == 0)</span><br><span class="line">		&#123;</span><br><span class="line">			delete ptr;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">private:</span><br><span class="line">	U_Ptr *ptr;</span><br><span class="line">	int val;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>解决方法2”</strong>实现深层拷贝</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class HasPtr</span><br><span class="line">&#123;</span><br><span class="line">private:</span><br><span class="line">	int* ptr;</span><br><span class="line">	int val;</span><br><span class="line">public:</span><br><span class="line">	HasPtr(const int&amp; p, int i) : ptr(new int(p)) , val(i)</span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	HasPtr(const HasPtr&amp; orig) : ptr(new int(*orig.ptr)) , val(orig.val)</span><br><span class="line">	&#123;</span><br><span class="line">		//实现深拷贝</span><br><span class="line">	&#125;</span><br><span class="line">	HasPtr&amp; operator=(HasPtr&amp; rhs)</span><br><span class="line">	&#123;</span><br><span class="line">		ptr = rhs.ptr;</span><br><span class="line">		val = rhs.val;</span><br><span class="line">		return *this;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="protected成员"><a href="#protected成员" class="headerlink" title="protected成员"></a>protected成员</h3><ul>
+<li>基类的一些成员希望允许派生类访问但是禁止其他用户访问，对于这样的成员应使用受保护的访问标志</li>
+<li><strong>注意点：</strong>派生类只能通过派生类对象访问其基类的protected成员，派生类对其基类类型对象的protected成员没有特殊访问权限。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Test_base</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	Test_base()&#123;&#125;</span><br><span class="line">	~Test_base()&#123;&#125;</span><br><span class="line">protected:</span><br><span class="line">	int pb;</span><br><span class="line">private:</span><br><span class="line">	int kk;</span><br><span class="line">	/* data */</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class Test_sun : public Test_base</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	void fun(Test_sun&amp; t, Test_base&amp; base)</span><br><span class="line">	&#123;</span><br><span class="line">		t.pb = 1;  //派生类对象可以访问基类的protected成员</span><br><span class="line">		base.pb = 1;//错误，基类类型的对象不能访问其protected对象</span><br><span class="line">		pb = 1;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal-one" aria-hidden="true">
+  <a href="#close" class="cover" aria-hidden="true"></a>
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <a href="#close" class="btn-close" aria-hidden="true">关闭</a>
+    </div>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+  <section class="duoshuo-comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="" data-title="C++基础知识(1)" data-url="http://yoursite.com/2016/04/11/C++基础知识(1)/index.html"></div>
+    <!-- 多说评论框 end -->
+  </section>
+
+
+
+
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:"forsigner"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?498', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
