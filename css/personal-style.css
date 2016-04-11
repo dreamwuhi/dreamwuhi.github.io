@@ -11,11 +11,11 @@
   font-weight: normal;
 }
 html {
-  background-image: url('/images/bg.png')
+  /*background-image: url('/images/bg.png')*/
 
   /*background: linear-gradient( #1abc9c, transparent), linear-gradient( 90deg, skyblue, transparent), linear-gradient( -90deg, coral, transparent)；*/
   
   /*background-blend-mode: screen;*/
 
-  /*background: linear-gradient(to left, #5f2c82, #49a09d);*/
+  background: linear-gradient(to left, #5f2c82, #49a09d);
 }
