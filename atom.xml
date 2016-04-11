@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-11T08:14:04.026Z</updated>
+  <updated>2016-04-11T10:02:10.231Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2016/04/11/C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86(1)/"/>
     <id>http://yoursite.com/2016/04/11/C++基础知识(1)/</id>
     <published>2016-04-11T08:09:22.000Z</published>
-    <updated>2016-04-11T08:14:04.026Z</updated>
+    <updated>2016-04-11T10:02:10.231Z</updated>
     
     <content type="html">&lt;h3 id=&quot;New和Delete&quot;&gt;&lt;a href=&quot;#New和Delete&quot; class=&quot;headerlink&quot; title=&quot;New和Delete&quot;&gt;&lt;/a&gt;New和Delete&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;&lt;p&gt;内置类型对象或未提供默认构造函数的类类型对象必须显示初始化&lt;/p&gt;
@@ -110,6 +110,10 @@
     
     </summary>
     
+      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+    
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
     
   </entry>
   
