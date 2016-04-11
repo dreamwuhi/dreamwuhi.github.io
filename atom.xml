@@ -122,13 +122,15 @@
     <link href="http://yoursite.com/2016/04/10/duilib%E5%BC%80%E5%8F%91QQ%E7%95%8C%E9%9D%A2/"/>
     <id>http://yoursite.com/2016/04/10/duilib开发QQ界面/</id>
     <published>2016-04-10T12:38:01.000Z</published>
-    <updated>2016-04-11T10:17:44.030Z</updated>
+    <updated>2016-04-11T10:38:53.598Z</updated>
     
     <content type="html"></content>
     
     <summary type="html">
     
     </summary>
+    
+      <category term="QQ界面开发" scheme="http://yoursite.com/categories/QQ%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91/"/>
     
     
       <category term="Win32" scheme="http://yoursite.com/tags/Win32/"/>
@@ -142,7 +144,7 @@
     <link href="http://yoursite.com/2016/04/10/Windows%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80/"/>
     <id>http://yoursite.com/2016/04/10/Windows程序设计基础/</id>
     <published>2016-04-10T12:02:14.000Z</published>
-    <updated>2016-04-11T10:18:10.287Z</updated>
+    <updated>2016-04-11T10:39:50.525Z</updated>
     
     <content type="html">&lt;h2 id=&quot;窗口程序创建的过程&quot;&gt;&lt;a href=&quot;#窗口程序创建的过程&quot; class=&quot;headerlink&quot; title=&quot;窗口程序创建的过程&quot;&gt;&lt;/a&gt;窗口程序创建的过程&lt;/h2&gt;&lt;hr&gt;
 &lt;h3 id=&quot;创建窗口类&quot;&gt;&lt;a href=&quot;#创建窗口类&quot; class=&quot;headerlink&quot; title=&quot;创建窗口类&quot;&gt;&lt;/a&gt;创建窗口类&lt;/h3&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;WNDCLASS wndclass;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -174,6 +176,8 @@
     
     </summary>
     
+      <category term="Windows开发" scheme="http://yoursite.com/categories/Windows%E5%BC%80%E5%8F%91/"/>
+    
     
       <category term="Win32" scheme="http://yoursite.com/tags/Win32/"/>
     
@@ -184,7 +188,7 @@
     <link href="http://yoursite.com/2016/04/10/duilib%E5%BC%80%E5%8F%91%E5%BE%AE%E4%BF%A1%E7%95%8C%E9%9D%A2/"/>
     <id>http://yoursite.com/2016/04/10/duilib开发微信界面/</id>
     <published>2016-04-10T10:16:23.000Z</published>
-    <updated>2016-04-11T10:17:59.198Z</updated>
+    <updated>2016-04-11T10:40:30.068Z</updated>
     
     <content type="html">&lt;h2 id=&quot;采用Duilib开源框架开发PC端微信&quot;&gt;&lt;a href=&quot;#采用Duilib开源框架开发PC端微信&quot; class=&quot;headerlink&quot; title=&quot;采用Duilib开源框架开发PC端微信&quot;&gt;&lt;/a&gt;采用Duilib开源框架开发PC端微信&lt;/h2&gt;</content>
     
@@ -193,6 +197,8 @@
       &lt;h2 id=&quot;采用Duilib开源框架开发PC端微信&quot;&gt;&lt;a href=&quot;#采用Duilib开源框架开发PC端微信&quot; class=&quot;headerlink&quot; title=&quot;采用Duilib开源框架开发PC端微信&quot;&gt;&lt;/a&gt;采用Duilib开源框架开发PC端微信&lt;/h2&gt;
     
     </summary>
+    
+      <category term="微信界面开发" scheme="http://yoursite.com/categories/%E5%BE%AE%E4%BF%A1%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91/"/>
     
     
       <category term="Win32" scheme="http://yoursite.com/tags/Win32/"/>

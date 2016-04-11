@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 
-  <html class="dark">
+  <html class="dark page-home">
 
 
 <head>
@@ -31,8 +31,8 @@
   
     <link rel="icon" href="/favicon.ico">
   
-  
-  <link href="/css/styles.css?v=7330865e" rel="stylesheet">
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
 
 
   
@@ -61,7 +61,7 @@ var _hmt = _hmt || [];
 <body>
 
   
-    <a href="#modal-one" class="toolbox-mobile">盒子</a>
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
   
 
   <div class="content content-search">
@@ -183,12 +183,13 @@ var _hmt = _hmt || [];
 
 
 
-  <div class="modal" id="modal-one" aria-hidden="true">
-  <a href="#close" class="cover" aria-hidden="true"></a>
-  <div class="modal-dialog">
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
     <div class="modal-header">
-      <a href="#close" class="btn-close" aria-hidden="true">关闭</a>
+      <span id="close" class="btn-close">关闭</span>
     </div>
+    <hr>
     <div class="modal-body">
       <ul class="list-toolbox">
         
@@ -286,7 +287,7 @@ var _hmt = _hmt || [];
   }
 
   window.onload = function() {
-    loadScript('/js/bundle.js?498', function() {
+    loadScript('/js/bundle.js?235687', function() {
       // load success
     });
   }

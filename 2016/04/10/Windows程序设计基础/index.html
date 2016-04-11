@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 
-  <html class="dark">
+  <html class="dark page-home">
 
 
 <head>
@@ -43,7 +43,7 @@
 更新窗口1UpdateWindow(hwnd);  //产生第一条WM_PATINT消息
 
 消息循环12345while(G">
-<meta property="og:updated_time" content="2016-04-11T10:18:10.287Z">
+<meta property="og:updated_time" content="2016-04-11T10:39:50.525Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Windows程序设计基础">
 <meta name="twitter:description" content="窗口程序创建的过程
@@ -64,8 +64,8 @@
   
     <link rel="icon" href="/favicon.ico">
   
-  
-  <link href="/css/styles.css?v=7330865e" rel="stylesheet">
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
 
 
   
@@ -94,7 +94,7 @@ var _hmt = _hmt || [];
 <body>
 
   
-    <a href="#modal-one" class="toolbox-mobile">盒子</a>
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
   
 
   <div class="post-header CENTER">
@@ -200,6 +200,11 @@ var _hmt = _hmt || [];
       
 
       
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Windows开发/">Windows开发</a>
+  </span>
+
 
 
       
@@ -245,12 +250,13 @@ var _hmt = _hmt || [];
 
 
 
-  <div class="modal" id="modal-one" aria-hidden="true">
-  <a href="#close" class="cover" aria-hidden="true"></a>
-  <div class="modal-dialog">
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
     <div class="modal-header">
-      <a href="#close" class="btn-close" aria-hidden="true">关闭</a>
+      <span id="close" class="btn-close">关闭</span>
     </div>
+    <hr>
     <div class="modal-body">
       <ul class="list-toolbox">
         
@@ -377,7 +383,7 @@ var _hmt = _hmt || [];
   }
 
   window.onload = function() {
-    loadScript('/js/bundle.js?498', function() {
+    loadScript('/js/bundle.js?235687', function() {
       // load success
     });
   }

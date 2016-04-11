@@ -17,5 +17,6 @@ html {
   
   /*background-blend-mode: screen;*/
 
-  background: linear-gradient(to left, #5f2c82, #49a09d);
+  /*background: linear-gradient(to left, #5f2c82, #49a09d);*/
+  background: linear-gradient(to left, #90ECEF, #FF8659);
 }
