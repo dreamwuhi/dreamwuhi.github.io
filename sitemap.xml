@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://dreamwuhi.github.io/category/index.html</loc>
+    
+    <lastmod>2016-04-12T02:52:40.744Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://dreamwuhi.github.io/2016/04/11/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/</loc>
     
-    <lastmod>2016-04-11T15:57:05.511Z</lastmod>
+    <lastmod>2016-04-11T16:06:18.797Z</lastmod>
     
   </url>
   
@@ -40,13 +47,6 @@
     <loc>http://dreamwuhi.github.io/css/personal-style.css</loc>
     
     <lastmod>2016-04-11T10:37:45.742Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://dreamwuhi.github.io/category/index.html</loc>
-    
-    <lastmod>2016-04-11T10:13:10.816Z</lastmod>
     
   </url>
   
