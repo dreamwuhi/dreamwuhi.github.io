@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+
+
+  <html class="dark page-home">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>多线程同步之内核模式 | Dream&#39;s Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="多线程," />
+  
+
+  <meta name="description" content="本文主要是对内核模式下的多线程机制进行讲述。与用户模式下的同步机制相比，使用内核对象的同步机制用途更加广泛。
+
+
+内核对象包括以下几类
+进程
+线程
+作业
+事件
+可等待的计时器
+信号量
+互斥量
+
+
+
+等待函数在使用内核对象的同步机制时，就要用到等待函数来判断内核对象是否已经触发，这样就可以确定调用线程是否可被调度。
+WaitForSingleObject1DWORD WaitForSingleOb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多线程同步之内核模式">
+<meta property="og:url" content="http://dreamwuhi.github.io/2016/04/12/多线程同步之内核模式/index.html">
+<meta property="og:site_name" content="Dream's Blog">
+<meta property="og:description" content="本文主要是对内核模式下的多线程机制进行讲述。与用户模式下的同步机制相比，使用内核对象的同步机制用途更加广泛。
+
+
+内核对象包括以下几类
+进程
+线程
+作业
+事件
+可等待的计时器
+信号量
+互斥量
+
+
+
+等待函数在使用内核对象的同步机制时，就要用到等待函数来判断内核对象是否已经触发，这样就可以确定调用线程是否可被调度。
+WaitForSingleObject1DWORD WaitForSingleOb">
+<meta property="og:updated_time" content="2016-04-12T10:15:38.909Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="多线程同步之内核模式">
+<meta name="twitter:description" content="本文主要是对内核模式下的多线程机制进行讲述。与用户模式下的同步机制相比，使用内核对象的同步机制用途更加广泛。
+
+
+内核对象包括以下几类
+进程
+线程
+作业
+事件
+可等待的计时器
+信号量
+互斥量
+
+
+
+等待函数在使用内核对象的同步机制时，就要用到等待函数来判断内核对象是否已经触发，这样就可以确定调用线程是否可被调度。
+WaitForSingleObject1DWORD WaitForSingleOb">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+<!-- Baidu Tongji -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a8c85de1e0c8ae1a4f0b0ed0219c4f56";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<!-- End Google Analytics -->
+
+</head>
+
+<body>
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#内核对象包括以下几类"><span class="toc-text">内核对象包括以下几类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#等待函数"><span class="toc-text">等待函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#WaitForSingleObject"><span class="toc-text">WaitForSingleObject</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WaitForMultipleObject"><span class="toc-text">WaitForMultipleObject</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#事件内核对象"><span class="toc-text">事件内核对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#事件内核对象的创建"><span class="toc-text">事件内核对象的创建</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#信号量内核对象"><span class="toc-text">信号量内核对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#信号量的规则："><span class="toc-text">信号量的规则：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#信号量内核对象的创建"><span class="toc-text">信号量内核对象的创建</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#互斥量内核对象"><span class="toc-text">互斥量内核对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#互斥量对象的规则："><span class="toc-text">互斥量对象的规则：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#互斥量对象的创建"><span class="toc-text">互斥量对象的创建</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-多线程同步之内核模式" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">多线程同步之内核模式</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.04.12</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Dream_Whui</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/多线程/">多线程</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://dreamwuhi.github.io/2016/04/12/多线程同步之内核模式/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <hr>
+<p>本文主要是对内核模式下的多线程机制进行讲述。与用户模式下的同步机制相比，使用内核对象的同步机制用途更加广泛。</p>
+<hr>
+<hr>
+<h1 id="内核对象包括以下几类"><a href="#内核对象包括以下几类" class="headerlink" title="内核对象包括以下几类"></a>内核对象包括以下几类</h1><ul>
+<li>进程</li>
+<li>线程</li>
+<li>作业</li>
+<li>事件</li>
+<li>可等待的计时器</li>
+<li>信号量</li>
+<li>互斥量</li>
+</ul>
+<hr>
+<hr>
+<h1 id="等待函数"><a href="#等待函数" class="headerlink" title="等待函数"></a>等待函数</h1><p>在使用内核对象的同步机制时，就要用到等待函数来判断内核对象是否已经触发，这样就可以确定调用线程是否可被调度。</p>
+<h2 id="WaitForSingleObject"><a href="#WaitForSingleObject" class="headerlink" title="WaitForSingleObject"></a>WaitForSingleObject</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">DWORD <span class="title">WaitForSingleObject</span><span class="params">(HANDLE hObject, DWORD dwMilliseconds)</span></span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>hObject：表示要等待的内核对象</li>
+<li>dwMilliseconds：表示线程愿意花费多少时间来等待对象被触发（时间单位：毫秒），INFINITE表示无限等待  </li>
+<li>函数的返回值：如果线程等待的对象被触发了，则返回WAIT_object_0; 如果因为等待超时，返回WAIT_TIMEOUT; 如果给函数传入的是无限的句柄，则返回WAIT_FAILED;</li>
+</ul>
+<h2 id="WaitForMultipleObject"><a href="#WaitForMultipleObject" class="headerlink" title="WaitForMultipleObject"></a>WaitForMultipleObject</h2><p>与WaitForSingleObject不同之处，WaitForMultipleObject可以等待多个内核对象。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">DWORD <span class="title">WaitForMultipleObject</span><span class="params">(</span><br><span class="line">		DWORD dwCount,</span><br><span class="line">		CONST HANDLE* phObjects,</span><br><span class="line">		BOOL  bWaitAll, </span><br><span class="line">		DWORD dwMilliseconds)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>dwCount：等待内核对象的数量</li>
+<li>phObjects：指针，指向内核对象句柄数组</li>
+<li>bWaitAll： TRUE,等待所有的内核对象都触发时才返回；FALSE，只要有一个内核对象触发就返回</li>
+<li>dwMilliseconds：表示线程愿意花费多少时间来等待对象被触发（时间单位：毫秒），INFINITE表示无限等待 </li>
+<li>WaitForMultipleObject的返回值：WAIT_TIMEOUT、WAIT_FAILED与WaitForSingleObject相同；如果设置的是任意一个内核对象触发就返回的话，则返回值是[WAIT_object_0,WAIT_object_0+dwCount-1]，得到的数值是内核句柄数组的一个索引；</li>
+</ul>
+<hr>
+<hr>
+<h1 id="事件内核对象"><a href="#事件内核对象" class="headerlink" title="事件内核对象"></a>事件内核对象</h1><p>事件内核对象包括一个使用计数，一个是否是自动重置事件还是手动重置事件的布尔值，以及另一个表示事件有没有被触发的布尔值。<br>手动重置事件被触发的时候，正在等待该事件的所有线程都讲变成可调度状态。<br>自动重置事件被触发的时候，只要一个正在等待该事件的线程会变成可调度状态。</p>
+<h2 id="事件内核对象的创建"><a href="#事件内核对象的创建" class="headerlink" title="事件内核对象的创建"></a>事件内核对象的创建</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">HANDLE <span class="title">CreateEvent</span><span class="params">(</span><br><span class="line">		PSECURITY_ATTRIBUTES psa,</span><br><span class="line">		BOOL bManualReset,</span><br><span class="line">		BOOL bInitialState,</span><br><span class="line">		PCTSTR pszName)</span></span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>bManualReset:表示是否创建手动重置对象</li>
+<li>bInitialState:事件初始化为触发状态(TRUE)还是未触发状态(FALSE)</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">SetEvent</span><span class="params">(HANDLE hEvent)</span></span>;<span class="comment">//设置事件触发状态</span></span><br><span class="line"><span class="function">BOOL <span class="title">ResetEvent</span><span class="params">(HANDLE hEvent)</span></span>;<span class="comment">//设置事件未触发状态</span></span><br></pre></td></tr></table></figure>
+<hr>
+<hr>
+<h1 id="信号量内核对象"><a href="#信号量内核对象" class="headerlink" title="信号量内核对象"></a>信号量内核对象</h1><p>信号量内核对象用来对资源进行计数。包含一个使用计数，一个最大资源计数和一个目前资源使用计数。</p>
+<h2 id="信号量的规则："><a href="#信号量的规则：" class="headerlink" title="信号量的规则："></a>信号量的规则：</h2><ul>
+<li>如果当前资源计数大于0，那么信号量处于触发状态</li>
+<li>如果当前资源计数等于0，那么信号量处于未触发状态</li>
+<li>系统绝对不会让当前资源计数变为负数</li>
+<li>当前资源计数绝对不会大于最大资源计数</li>
+</ul>
+<h2 id="信号量内核对象的创建"><a href="#信号量内核对象的创建" class="headerlink" title="信号量内核对象的创建"></a>信号量内核对象的创建</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">HANDLE <span class="title">CreateSemaphore</span><span class="params">(</span><br><span class="line">		PSECURITY_ATTRIBUTES psa,</span><br><span class="line">		LONG lInitialCount,</span><br><span class="line">		LONG lMaximumCount,</span><br><span class="line">		PCTSTR pszName)</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>lMaximumCount: 资源的最大使用数量</li>
+<li>lInitialCount: 初始化时资源中有多少可以使用</li>
+</ul>
+<p>每当线程成功等待信号量内核对象，则会将当前使用计数减1，最后线程还要调用ReleaseSemaphore来递增信号量的当前资源使用计数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">ReleaseSemaphore</span><span class="params">(HANDLE hSemaphore,LONG lReleaseCount,PLONG plRreviousCount)</span></span>;</span><br><span class="line"><span class="comment">//此函数把lReleaseCount的值加到信号量的当前资源计数上，plRreviousCount返回当前资源计数的原始值</span></span><br></pre></td></tr></table></figure>
+<hr>
+<hr>
+<h1 id="互斥量内核对象"><a href="#互斥量内核对象" class="headerlink" title="互斥量内核对象"></a>互斥量内核对象</h1><p>互斥量内核对象用来确保一个一个线程独占对一个资源的访问。互斥量对象包含一个使用计数，线程ID，递归计数。<br>其中，线程ID用了标识当前占用互斥量的是系统中的哪一个线程，递归计数标识这个线程占用该互斥量的次数。</p>
+<h2 id="互斥量对象的规则："><a href="#互斥量对象的规则：" class="headerlink" title="互斥量对象的规则："></a>互斥量对象的规则：</h2><ul>
+<li>如果线程ID为0，那么该互斥对象不为任何线程所占用，它处于触发状态</li>
+<li>如果线程ID非零值，那么有一个线程已经占用了该互斥量，它处于未触发状态</li>
+</ul>
+<h2 id="互斥量对象的创建"><a href="#互斥量对象的创建" class="headerlink" title="互斥量对象的创建"></a>互斥量对象的创建</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">HANDLE <span class="title">CreateMutex</span><span class="params">(</span><br><span class="line">		PSECURITY_ATTRIBUTES psa,</span><br><span class="line">		BOOL bInitialOwner,</span><br><span class="line">		PCTSTR pszName)</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>bInitialOwner: 互斥量对象的初始状态。FALSE,互斥量对象的线程ID为0，递归计数为0，处于触发状态。<br>互斥内核对象的一个特点：系统会检查当前线程的ID与互斥量内部记录的线程ID是否相同。如果ID一致，那么系统会让线程保持可调度状态，即使互斥量尚未触发。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">ReleaseMutex</span><span class="params">(HANDLE hMutex)</span></span>;<span class="comment">//释放互斥量，互斥量内部的线程ID置0，递归计数置0，互斥量变成触发状态</span></span><br></pre></td></tr></table></figure>
+<hr>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'dreamwuhi';
+    
+    var disqus_url = 'http://dreamwuhi.github.io/2016/04/12/多线程同步之内核模式/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//dreamwuhi.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

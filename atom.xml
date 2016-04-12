@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dreamwuhi.github.io/"/>
-  <updated>2016-04-11T16:06:18.797Z</updated>
+  <updated>2016-04-12T10:15:38.909Z</updated>
   <id>http://dreamwuhi.github.io/</id>
   
   <author>
@@ -16,17 +16,111 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>多线程同步之内核模式</title>
+    <link href="http://dreamwuhi.github.io/2016/04/12/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E4%B9%8B%E5%86%85%E6%A0%B8%E6%A8%A1%E5%BC%8F%C2%9D/"/>
+    <id>http://dreamwuhi.github.io/2016/04/12/多线程同步之内核模式/</id>
+    <published>2016-04-12T08:19:23.000Z</published>
+    <updated>2016-04-12T10:15:38.909Z</updated>
+    
+    <content type="html">&lt;hr&gt;
+&lt;p&gt;本文主要是对内核模式下的多线程机制进行讲述。与用户模式下的同步机制相比，使用内核对象的同步机制用途更加广泛。&lt;/p&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;h1 id=&quot;内核对象包括以下几类&quot;&gt;&lt;a href=&quot;#内核对象包括以下几类&quot; class=&quot;headerlink&quot; title=&quot;内核对象包括以下几类&quot;&gt;&lt;/a&gt;内核对象包括以下几类&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;进程&lt;/li&gt;
+&lt;li&gt;线程&lt;/li&gt;
+&lt;li&gt;作业&lt;/li&gt;
+&lt;li&gt;事件&lt;/li&gt;
+&lt;li&gt;可等待的计时器&lt;/li&gt;
+&lt;li&gt;信号量&lt;/li&gt;
+&lt;li&gt;互斥量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;h1 id=&quot;等待函数&quot;&gt;&lt;a href=&quot;#等待函数&quot; class=&quot;headerlink&quot; title=&quot;等待函数&quot;&gt;&lt;/a&gt;等待函数&lt;/h1&gt;&lt;p&gt;在使用内核对象的同步机制时，就要用到等待函数来判断内核对象是否已经触发，这样就可以确定调用线程是否可被调度。&lt;/p&gt;
+&lt;h2 id=&quot;WaitForSingleObject&quot;&gt;&lt;a href=&quot;#WaitForSingleObject&quot; class=&quot;headerlink&quot; title=&quot;WaitForSingleObject&quot;&gt;&lt;/a&gt;WaitForSingleObject&lt;/h2&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;DWORD &lt;span class=&quot;title&quot;&gt;WaitForSingleObject&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(HANDLE hObject, DWORD dwMilliseconds)&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;hObject：表示要等待的内核对象&lt;/li&gt;
+&lt;li&gt;dwMilliseconds：表示线程愿意花费多少时间来等待对象被触发（时间单位：毫秒），INFINITE表示无限等待  &lt;/li&gt;
+&lt;li&gt;函数的返回值：如果线程等待的对象被触发了，则返回WAIT_object_0; 如果因为等待超时，返回WAIT_TIMEOUT; 如果给函数传入的是无限的句柄，则返回WAIT_FAILED;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;WaitForMultipleObject&quot;&gt;&lt;a href=&quot;#WaitForMultipleObject&quot; class=&quot;headerlink&quot; title=&quot;WaitForMultipleObject&quot;&gt;&lt;/a&gt;WaitForMultipleObject&lt;/h2&gt;&lt;p&gt;与WaitForSingleObject不同之处，WaitForMultipleObject可以等待多个内核对象。&lt;br&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;DWORD &lt;span class=&quot;title&quot;&gt;WaitForMultipleObject&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		DWORD dwCount,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		CONST HANDLE* phObjects,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		BOOL  bWaitAll, &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		DWORD dwMilliseconds)&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;dwCount：等待内核对象的数量&lt;/li&gt;
+&lt;li&gt;phObjects：指针，指向内核对象句柄数组&lt;/li&gt;
+&lt;li&gt;bWaitAll： TRUE,等待所有的内核对象都触发时才返回；FALSE，只要有一个内核对象触发就返回&lt;/li&gt;
+&lt;li&gt;dwMilliseconds：表示线程愿意花费多少时间来等待对象被触发（时间单位：毫秒），INFINITE表示无限等待 &lt;/li&gt;
+&lt;li&gt;WaitForMultipleObject的返回值：WAIT_TIMEOUT、WAIT_FAILED与WaitForSingleObject相同；如果设置的是任意一个内核对象触发就返回的话，则返回值是[WAIT_object_0,WAIT_object_0+dwCount-1]，得到的数值是内核句柄数组的一个索引；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;h1 id=&quot;事件内核对象&quot;&gt;&lt;a href=&quot;#事件内核对象&quot; class=&quot;headerlink&quot; title=&quot;事件内核对象&quot;&gt;&lt;/a&gt;事件内核对象&lt;/h1&gt;&lt;p&gt;事件内核对象包括一个使用计数，一个是否是自动重置事件还是手动重置事件的布尔值，以及另一个表示事件有没有被触发的布尔值。&lt;br&gt;手动重置事件被触发的时候，正在等待该事件的所有线程都讲变成可调度状态。&lt;br&gt;自动重置事件被触发的时候，只要一个正在等待该事件的线程会变成可调度状态。&lt;/p&gt;
+&lt;h2 id=&quot;事件内核对象的创建&quot;&gt;&lt;a href=&quot;#事件内核对象的创建&quot; class=&quot;headerlink&quot; title=&quot;事件内核对象的创建&quot;&gt;&lt;/a&gt;事件内核对象的创建&lt;/h2&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;HANDLE &lt;span class=&quot;title&quot;&gt;CreateEvent&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		PSECURITY_ATTRIBUTES psa,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		BOOL bManualReset,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		BOOL bInitialState,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		PCTSTR pszName)&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;bManualReset:表示是否创建手动重置对象&lt;/li&gt;
+&lt;li&gt;bInitialState:事件初始化为触发状态(TRUE)还是未触发状态(FALSE)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;BOOL &lt;span class=&quot;title&quot;&gt;SetEvent&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(HANDLE hEvent)&lt;/span&gt;&lt;/span&gt;;&lt;span class=&quot;comment&quot;&gt;//设置事件触发状态&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;BOOL &lt;span class=&quot;title&quot;&gt;ResetEvent&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(HANDLE hEvent)&lt;/span&gt;&lt;/span&gt;;&lt;span class=&quot;comment&quot;&gt;//设置事件未触发状态&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;h1 id=&quot;信号量内核对象&quot;&gt;&lt;a href=&quot;#信号量内核对象&quot; class=&quot;headerlink&quot; title=&quot;信号量内核对象&quot;&gt;&lt;/a&gt;信号量内核对象&lt;/h1&gt;&lt;p&gt;信号量内核对象用来对资源进行计数。包含一个使用计数，一个最大资源计数和一个目前资源使用计数。&lt;/p&gt;
+&lt;h2 id=&quot;信号量的规则：&quot;&gt;&lt;a href=&quot;#信号量的规则：&quot; class=&quot;headerlink&quot; title=&quot;信号量的规则：&quot;&gt;&lt;/a&gt;信号量的规则：&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;如果当前资源计数大于0，那么信号量处于触发状态&lt;/li&gt;
+&lt;li&gt;如果当前资源计数等于0，那么信号量处于未触发状态&lt;/li&gt;
+&lt;li&gt;系统绝对不会让当前资源计数变为负数&lt;/li&gt;
+&lt;li&gt;当前资源计数绝对不会大于最大资源计数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;信号量内核对象的创建&quot;&gt;&lt;a href=&quot;#信号量内核对象的创建&quot; class=&quot;headerlink&quot; title=&quot;信号量内核对象的创建&quot;&gt;&lt;/a&gt;信号量内核对象的创建&lt;/h2&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;HANDLE &lt;span class=&quot;title&quot;&gt;CreateSemaphore&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		PSECURITY_ATTRIBUTES psa,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		LONG lInitialCount,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		LONG lMaximumCount,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		PCTSTR pszName)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;lMaximumCount: 资源的最大使用数量&lt;/li&gt;
+&lt;li&gt;lInitialCount: 初始化时资源中有多少可以使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;每当线程成功等待信号量内核对象，则会将当前使用计数减1，最后线程还要调用ReleaseSemaphore来递增信号量的当前资源使用计数。&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;BOOL &lt;span class=&quot;title&quot;&gt;ReleaseSemaphore&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(HANDLE hSemaphore,LONG lReleaseCount,PLONG plRreviousCount)&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//此函数把lReleaseCount的值加到信号量的当前资源计数上，plRreviousCount返回当前资源计数的原始值&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;h1 id=&quot;互斥量内核对象&quot;&gt;&lt;a href=&quot;#互斥量内核对象&quot; class=&quot;headerlink&quot; title=&quot;互斥量内核对象&quot;&gt;&lt;/a&gt;互斥量内核对象&lt;/h1&gt;&lt;p&gt;互斥量内核对象用来确保一个一个线程独占对一个资源的访问。互斥量对象包含一个使用计数，线程ID，递归计数。&lt;br&gt;其中，线程ID用了标识当前占用互斥量的是系统中的哪一个线程，递归计数标识这个线程占用该互斥量的次数。&lt;/p&gt;
+&lt;h2 id=&quot;互斥量对象的规则：&quot;&gt;&lt;a href=&quot;#互斥量对象的规则：&quot; class=&quot;headerlink&quot; title=&quot;互斥量对象的规则：&quot;&gt;&lt;/a&gt;互斥量对象的规则：&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;如果线程ID为0，那么该互斥对象不为任何线程所占用，它处于触发状态&lt;/li&gt;
+&lt;li&gt;如果线程ID非零值，那么有一个线程已经占用了该互斥量，它处于未触发状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;互斥量对象的创建&quot;&gt;&lt;a href=&quot;#互斥量对象的创建&quot; class=&quot;headerlink&quot; title=&quot;互斥量对象的创建&quot;&gt;&lt;/a&gt;互斥量对象的创建&lt;/h2&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;HANDLE &lt;span class=&quot;title&quot;&gt;CreateMutex&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		PSECURITY_ATTRIBUTES psa,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		BOOL bInitialOwner,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		PCTSTR pszName)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;bInitialOwner: 互斥量对象的初始状态。FALSE,互斥量对象的线程ID为0，递归计数为0，处于触发状态。&lt;br&gt;互斥内核对象的一个特点：系统会检查当前线程的ID与互斥量内部记录的线程ID是否相同。如果ID一致，那么系统会让线程保持可调度状态，即使互斥量尚未触发。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;BOOL &lt;span class=&quot;title&quot;&gt;ReleaseMutex&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(HANDLE hMutex)&lt;/span&gt;&lt;/span&gt;;&lt;span class=&quot;comment&quot;&gt;//释放互斥量，互斥量内部的线程ID置0，递归计数置0，互斥量变成触发状态&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;hr&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+&lt;p&gt;本文主要是对内核模式下的多线程机制进行讲述。与用户模式下的同步机制相比，使用内核对象的同步机制用途更加广泛。&lt;/p&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;h1 id=&quot;内核对象包括以下几类&quot;&gt;&lt;a href=&quot;#内核对象包括以下几类&quot; class=&quot;headerlink&quot; ti
+    
+    </summary>
+    
+      <category term="多线程" scheme="http://dreamwuhi.github.io/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+    
+      <category term="多线程" scheme="http://dreamwuhi.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
     <title>多线程同步</title>
     <link href="http://dreamwuhi.github.io/2016/04/11/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/"/>
     <id>http://dreamwuhi.github.io/2016/04/11/多线程同步/</id>
     <published>2016-04-11T15:19:47.000Z</published>
-    <updated>2016-04-11T16:06:18.797Z</updated>
+    <updated>2016-04-12T07:02:28.215Z</updated>
     
     <content type="html">&lt;hr&gt;
+&lt;p&gt;本文主要讲了用户模式下的线程同步机制，用户模式下的同步最大的好处是速度快。此外还有内核状态下的同步机制将放在写一篇博客中讲述！&lt;/p&gt;
 &lt;h1 id=&quot;原子访问&quot;&gt;&lt;a href=&quot;#原子访问&quot; class=&quot;headerlink&quot; title=&quot;原子访问&quot;&gt;&lt;/a&gt;&lt;strong&gt;原子访问&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;指的是一个线程在访问某个资源的&lt;font color=&quot;red&quot;&gt;同时&lt;/font&gt;能够保证没有其他线程会在同一时刻访问同一资源。&lt;br&gt;Interlocked系列的函数可以保证是原子操作。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;CRITICAL_SECTION g_cs 		&lt;span class=&quot;comment&quot;&gt;//初始化关键代码段结构&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;InitializeCriticalSection(g_cs);    &lt;span class=&quot;comment&quot;&gt;//初始化&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;EnterCriticalSection(&amp;amp;g_cs);    &lt;span class=&quot;comment&quot;&gt;//进入关键代码段&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LeaveCriticalSection(&amp;amp;g_cs);    &lt;span class=&quot;comment&quot;&gt;//离开关键代码段&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;DeleteCriticalSection(g_cs);    &lt;span class=&quot;comment&quot;&gt;//删除&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;hr&gt;
 &lt;hr&gt;
 &lt;h1 id=&quot;高级线程同步&quot;&gt;&lt;a href=&quot;#高级线程同步&quot; class=&quot;headerlink&quot; title=&quot;高级线程同步&quot;&gt;&lt;/a&gt;&lt;strong&gt;高级线程同步&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;
@@ -35,7 +129,7 @@
 &lt;hr&gt;
 &lt;hr&gt;
 &lt;h1 id=&quot;关键代码段&quot;&gt;&lt;a href=&quot;#关键代码段&quot; class=&quot;headerlink&quot; title=&quot;关键代码段&quot;&gt;&lt;/a&gt;&lt;strong&gt;关键代码段&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;这种方式让多行代码以原子的方式对资源进行操控。&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;CRITICAL_SECTION g_cs &lt;span class=&quot;comment&quot;&gt;//初始化关键代码段结构&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;InitializeCriticalSection(g_cs);    &lt;span class=&quot;comment&quot;&gt;//初始化&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;EnterCriticalSection(&amp;amp;g_cs);    &lt;span class=&quot;comment&quot;&gt;//进入关键代码段&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LeaveCriticalSection(&amp;amp;g_cs);    &lt;span class=&quot;comment&quot;&gt;//离开关键代码段&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;DeleteCriticalSection(g_cs);    &lt;span class=&quot;comment&quot;&gt;//删除&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;li&gt;这种方式让多行代码以原子的方式对资源进行操控。&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;CRITICAL_SECTION g_cs 	&lt;span class=&quot;comment&quot;&gt;//初始化关键代码段结构&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;InitializeCriticalSection(g_cs);    &lt;span class=&quot;comment&quot;&gt;//初始化&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;EnterCriticalSection(&amp;amp;g_cs);    &lt;span class=&quot;comment&quot;&gt;//进入关键代码段&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LeaveCriticalSection(&amp;amp;g_cs);    &lt;span class=&quot;comment&quot;&gt;//离开关键代码段&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;DeleteCriticalSection(g_cs);    &lt;span class=&quot;comment&quot;&gt;//删除&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
@@ -45,13 +139,19 @@
 &lt;/ul&gt;
 &lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;BOOL &lt;span class=&quot;title&quot;&gt;InitializeCriticalSectionAndSpinCount&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(PCRITICAL_SECTION pcs, DWORD dwSpinCount)&lt;/span&gt;&lt;/span&gt;;&lt;span class=&quot;comment&quot;&gt;//dwSpinCount 表示旋转锁循环的次数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;hr&gt;
+&lt;hr&gt;
+&lt;h1 id=&quot;Slim读-写锁&quot;&gt;&lt;a href=&quot;#Slim读-写锁&quot; class=&quot;headerlink&quot; title=&quot;Slim读/写锁&quot;&gt;&lt;/a&gt;&lt;strong&gt;Slim读/写锁&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;SRWLock允许我们区分那些想要读取资源值的线程（读取者线程）和想要更新资源值的线程（写入者线程）。让所有读取者线程同一时刻访问资源是可行的，因为不会破坏数据。写入者线程应该独占资源的访问权，任何其他读取者线程与写入者线程都不允许访问该资源。这就是SRWLock锁的关不内容。&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;VOID &lt;span class=&quot;title&quot;&gt;InitializeSRWLock&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(PSRWLOCK SRWLock)&lt;/span&gt;&lt;/span&gt;;&lt;span class=&quot;comment&quot;&gt;//初始化&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//写入者线程访问&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;VOID &lt;span class=&quot;title&quot;&gt;AcquireSRWLockExclusive&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(PSRWLOCK SRWLock)&lt;/span&gt;&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;//读&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;VOID &lt;span class=&quot;title&quot;&gt;ReleaseSRWLockExclusive&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(PSRWLOCK SRWLock)&lt;/span&gt;&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;//释放&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//读取者线程访问&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;VOID &lt;span class=&quot;title&quot;&gt;AcquireSRWLockShared&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(PSRWLOCK SRWLock)&lt;/span&gt;&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;//读&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;VOID &lt;span class=&quot;title&quot;&gt;ReleaseSRWLockShared&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(PSRWLOCK SRWLock)&lt;/span&gt;&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;//释放&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
 </content>
     
     <summary type="html">
     
       &lt;hr&gt;
-&lt;h1 id=&quot;原子访问&quot;&gt;&lt;a href=&quot;#原子访问&quot; class=&quot;headerlink&quot; title=&quot;原子访问&quot;&gt;&lt;/a&gt;&lt;strong&gt;原子访问&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;指的是一个线程在访问某个资源的&lt;font color=&quot;red&quot;&gt;同
+&lt;p&gt;本文主要讲了用户模式下的线程同步机制，用户模式下的同步最大的好处是速度快。此外还有内核状态下的同步机制将放在写一篇博客中讲述！&lt;/p&gt;
+&lt;h1 id=&quot;原子访问&quot;&gt;&lt;a href=&quot;#原子访问&quot; class=&quot;headerlink&quot; title=&quot;原子访问&quot;&gt;&lt;/
     
     </summary>
     
