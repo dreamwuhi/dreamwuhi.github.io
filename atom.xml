@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dreamwuhi.github.io/"/>
-  <updated>2016-04-13T10:12:14.165Z</updated>
+  <updated>2016-04-14T14:21:44.359Z</updated>
   <id>http://dreamwuhi.github.io/</id>
   
   <author>
@@ -14,6 +14,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网易面试之Windows开发实习</title>
+    <link href="http://dreamwuhi.github.io/2016/04/14/%E7%BD%91%E6%98%93%E9%9D%A2%E8%AF%95%E4%B9%8BWindows%E5%BC%80%E5%8F%91%E5%AE%9E%E4%B9%A0/"/>
+    <id>http://dreamwuhi.github.io/2016/04/14/网易面试之Windows开发实习/</id>
+    <published>2016-04-14T13:45:22.000Z</published>
+    <updated>2016-04-14T14:21:44.359Z</updated>
+    
+    <content type="html">&lt;p&gt;今天完成了人生中的第一次正规面试，貌似来的真的太晚了。本人半路出家，本科四年只学过C语言，考研那会才真正开始踏入CS专业的道路。&lt;br&gt;研一刚进来的时候，那叫一个菜啊，真的菜。连VS2010才从研一的时候开始用，以前都用VC6.0，真是呵呵哒了。自己的研究方向是图像处理，啥都不知道，先从Opencv自学开始，自己慢慢地摸索，虽然进度很慢，但是到现在为止自己感觉真的是进步蛮大的。&lt;br&gt;研一，自学了数据结构，Leetcode刷了一大半，那时只剩30道左右没又刷了。自学了MFC,写了一个图书馆管理系统。积累了一些图形图像的基本知识及相关机器学习的算法。&lt;br&gt;研二，重点学了Linux,深入C++的理解，看了《C++ Primer》，《Effective C++》,&amp;lt;&amp;lt;深度探索C++对象模型&amp;gt;&amp;gt;，《C和指针》。&lt;br&gt;通过网易云课堂，看了很多择善教育的Win32编程视频，随后自己开始Windows编程的学习，主要看了《Windows程序设计》上下版，《Windows核心编程》&lt;br&gt;对了，最重要的是着重了解Duilib开源框架，这个是用C++，在Win32上封装的一个UI库。写界面真的是比用原生Win32或MFC开发简单了很多倍，重点还更漂亮！&lt;/p&gt;
+&lt;p&gt;好了，以上大概就是我的学习经历，其实说实话，自己的知识面还是很窄的。对于网络，数据库，操作系统（略了解）都是很欠缺的，今天在面试的时候，这方面的内容我都回答不出来。接下来需要重点来学习下！！&lt;/p&gt;
+&lt;p&gt;好了，说重点吧，今天的面试过程。&lt;br&gt;今天的面试分三轮，前两轮是技术面，最后一面是HR面，如果前两轮不好的话，就没有HR面了~~&lt;br&gt;博主今天很早就到了网易，打了个顺风车，在车上还使劲地看一些排序算法，面试一个都没问到，呵呵哒了~~&lt;br&gt;到了11点的时候终于轮到我面试了，面试官是一个比较年轻的小哥，我先简单的自我介绍，面试官看到我的项目上用了duilib,他就开始对duilib展开提问。&lt;br&gt;后来，才发现原来最近他们部门在重新邮件客户端，用的UI库就是这个，怪不得他一直问我这方面的问题，足足是一个小时啊。&lt;br&gt;首先，他问我对duilib了解，然后我就简单说了duilib的特点及其与原生Win32窗口程序开发的区别。说的比较浅，面试官不是很满意，然后他说duilib最大的特点应该是消息机制的实现，其实我知道是这个，但是我说不清具体怎么实现的，所以我也就没说。&lt;br&gt;第二个问题，他问我duilib的组织结构。&lt;br&gt;第三个问题，duilib xml的解析&lt;br&gt;第四个问题，EventSeletc模型的特点&lt;br&gt;第五个问题，客户端怎么处理服务器发送过来的数据交给UI线程&lt;br&gt;第六个问题，自定义的消息结构是怎么样的&lt;br&gt;第七个问题，当出现异常的消息内容，如何处理&lt;br&gt;第八个问题，一道算法题，大致内容是给我一段字符串，里面包括一些表情，一些文本，如何解析文本及表情，以及一些边界等特殊情况的处理。&lt;br&gt;第九个问题，如何高效的处理XML解析后，控件的创建&lt;br&gt;第十个问题，虚函数与重载的区别，及深层含义&lt;br&gt;一面大概就是这些问题。&lt;/p&gt;
+&lt;p&gt;二面的时候，面试官也比较年轻。&lt;br&gt;一问，除了EnentSelect网络模型还了解什么模型，我答了IO重叠模型，和IOCP模型，然后重点分析了IOCP模型的过程及特点。面试官比较满意&lt;br&gt;二问，线程同步的机制&lt;br&gt;三问，智能指针&lt;br&gt;四问，智能指针auto_ptr的实现，手写！&lt;br&gt;五问，一道编程题，输出结果。重点考察的一个虚函数表的特性&lt;br&gt;六问，父类虚的析构函数的作用，以及把父类的析构函数都定义成虚函数会怎么样&lt;br&gt;七问，不让调用构造函数的方法&lt;br&gt;八问，数据与UI的交互&lt;br&gt;九问，设断点程序会停下来的原理&lt;br&gt;十问，貌似没了，我问了他两个问题就结束了。&lt;/p&gt;
+&lt;p&gt;HR面，随便聊聊。。&lt;/p&gt;
+&lt;p&gt;就这样，等结果了~~~&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天完成了人生中的第一次正规面试，貌似来的真的太晚了。本人半路出家，本科四年只学过C语言，考研那会才真正开始踏入CS专业的道路。&lt;br&gt;研一刚进来的时候，那叫一个菜啊，真的菜。连VS2010才从研一的时候开始用，以前都用VC6.0，真是呵呵哒了。自己的研究方向是图像处理，啥
+    
+    </summary>
+    
+      <category term="面试" scheme="http://dreamwuhi.github.io/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+      <category term="Windows" scheme="http://dreamwuhi.github.io/tags/Windows/"/>
+    
+  </entry>
   
   <entry>
     <title>数据结构-链表旋转</title>
