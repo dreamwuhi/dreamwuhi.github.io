@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+
+  <html class="dark page-home">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>Leetcode-Binary Tree Paths | Dream&#39;s Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="dream,Hexo主题,C/C++,用户体验,设计" />
+  
+
+  <meta name="description" content="本题要求将二叉树所有的路径输出，是一道简单题，深度优先遍历即可。二叉树节点存储的是Int值，需要将其转化为字符串。
+代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445class Solution &amp;#123;private:	std::vector&amp;lt;string&amp;gt; v;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode-Binary Tree Paths">
+<meta property="og:url" content="http://dreamwuhi.github.io/2016/05/21/Leetcode-Binary-Tree-Paths/index.html">
+<meta property="og:site_name" content="Dream's Blog">
+<meta property="og:description" content="本题要求将二叉树所有的路径输出，是一道简单题，深度优先遍历即可。二叉树节点存储的是Int值，需要将其转化为字符串。
+代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445class Solution &amp;#123;private:	std::vector&amp;lt;string&amp;gt; v;">
+<meta property="og:updated_time" content="2016-05-21T12:44:58.449Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Leetcode-Binary Tree Paths">
+<meta name="twitter:description" content="本题要求将二叉树所有的路径输出，是一道简单题，深度优先遍历即可。二叉树节点存储的是Int值，需要将其转化为字符串。
+代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445class Solution &amp;#123;private:	std::vector&amp;lt;string&amp;gt; v;">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+<!-- Baidu Tongji -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a8c85de1e0c8ae1a4f0b0ed0219c4f56";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<!-- End Google Analytics -->
+
+</head>
+
+<body>
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Leetcode-Binary-Tree-Paths" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Leetcode-Binary Tree Paths</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.05.21</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Dream_Whui</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://dreamwuhi.github.io/2016/05/21/Leetcode-Binary-Tree-Paths/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>本题要求将二叉树所有的路径输出，是一道简单题，深度优先遍历即可。<br>二叉树节点存储的是Int值，需要将其转化为字符串。</p>
+<p>代码：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; v;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">i2s</span><span class="params">(<span class="keyword">int</span> val , <span class="built_in">std</span>::<span class="built_in">string</span> &amp;tmp)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="built_in">string</span> pp;</span><br><span class="line">		<span class="keyword">if</span>(val &lt; <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">		    tmp += <span class="string">"-"</span>;</span><br><span class="line">		    val = -val;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span>(val)</span><br><span class="line">		&#123;</span><br><span class="line">			pp.insert(pp.begin(), <span class="string">'0'</span>+val % <span class="number">10</span>);</span><br><span class="line">			val = val / <span class="number">10</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		tmp += pp + <span class="string">"-&gt;"</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Traver</span><span class="params">(TreeNode* root, <span class="built_in">std</span>::<span class="built_in">string</span> tmp)</span> </span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(root)</span><br><span class="line">		&#123;</span><br><span class="line"></span><br><span class="line">			i2s(root-&gt;val,tmp);</span><br><span class="line">			<span class="keyword">if</span>(root-&gt;left)</span><br><span class="line">				Traver(root-&gt;left,tmp);</span><br><span class="line">			<span class="keyword">if</span>(root-&gt;right)</span><br><span class="line">				Traver(root-&gt;right,tmp);</span><br><span class="line">			<span class="keyword">if</span>(!root-&gt;left &amp;&amp; !root-&gt;right)</span><br><span class="line">			&#123;</span><br><span class="line">				tmp.erase(tmp.begin()+tmp.size()<span class="number">-2</span>,tmp.end());</span><br><span class="line">				v.push_back(tmp);</span><br><span class="line">			&#125;	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; binaryTreePaths(TreeNode* root) </span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="built_in">std</span>::<span class="built_in">string</span> tmp;</span><br><span class="line">        Traver(root,tmp);</span><br><span class="line">        return v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'dreamwuhi';
+    
+    var disqus_url = 'http://dreamwuhi.github.io/2016/05/21/Leetcode-Binary-Tree-Paths/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//dreamwuhi.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
