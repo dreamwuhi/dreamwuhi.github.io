@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dreamwuhi.github.io/"/>
-  <updated>2016-05-21T12:44:58.449Z</updated>
+  <updated>2016-05-22T04:37:05.415Z</updated>
   <id>http://dreamwuhi.github.io/</id>
   
   <author>
@@ -14,6 +14,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode-House Robber III</title>
+    <link href="http://dreamwuhi.github.io/2016/05/22/Leetcode-House-Robber-III/"/>
+    <id>http://dreamwuhi.github.io/2016/05/22/Leetcode-House-Robber-III/</id>
+    <published>2016-05-22T04:25:25.000Z</published>
+    <updated>2016-05-22T04:37:05.415Z</updated>
+    
+    <content type="html">&lt;p&gt;The thief has found himself a new place for his thievery again. There is only one entrance to this area, called the “root.” Besides the root, each house has one and only one parent house. After a tour, the smart thief realized that “all houses in this place forms a binary tree”. It will automatically contact the police if two directly-linked houses were broken into on the same night.&lt;/p&gt;
+&lt;p&gt;Determine the maximum amount of money the thief can rob tonight without alerting the police.&lt;/p&gt;
+&lt;p&gt;Example 1:&lt;br&gt;     3&lt;br&gt;    / \&lt;br&gt;   2   3&lt;br&gt;    \   \&lt;br&gt;     3   1&lt;br&gt;Maximum amount of money the thief can rob = 3 + 3 + 1 = 7.&lt;br&gt;Example 2:&lt;br&gt;     3&lt;br&gt;    / \&lt;br&gt;   4   5&lt;br&gt;  / \   \&lt;br&gt; 1   3   1&lt;br&gt;Maximum amount of money the thief can rob = 4 + 5 = 9.&lt;/p&gt;
+&lt;p&gt;本题是一道树形DP问题。&lt;br&gt;思路：&lt;br&gt;一颗二叉树可以返回两种结果，选取父节点的结果与未选取父节点的结果。&lt;br&gt;其中，选取了父节点，则左右孩子节点都不能被选取。即F0(root) = root-&amp;gt;val + F1(root-&amp;gt;left) + F1(root-&amp;gt;right).&lt;br&gt;未选取父节点，则左右孩子节点可选可不选，视情况而定。&lt;br&gt;即F1(root) = max(F0(root-&amp;gt;left),F1(root-&amp;gt;left))+max(F0(root-&amp;gt;right),F1(root-&amp;gt;right)).    &lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;The thief has found himself a new place for his thievery again. There is only one entrance to this area, called the “root.” Besides the r
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Leetcode-Binary Tree Paths</title>
@@ -385,9 +407,9 @@
       <category term="QQ界面开发" scheme="http://dreamwuhi.github.io/categories/QQ%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="duilib" scheme="http://dreamwuhi.github.io/tags/duilib/"/>
-    
       <category term="Win32" scheme="http://dreamwuhi.github.io/tags/Win32/"/>
+    
+      <category term="duilib" scheme="http://dreamwuhi.github.io/tags/duilib/"/>
     
   </entry>
   
@@ -453,9 +475,9 @@
       <category term="微信界面开发" scheme="http://dreamwuhi.github.io/categories/%E5%BE%AE%E4%BF%A1%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="duilib" scheme="http://dreamwuhi.github.io/tags/duilib/"/>
-    
       <category term="Win32" scheme="http://dreamwuhi.github.io/tags/Win32/"/>
+    
+      <category term="duilib" scheme="http://dreamwuhi.github.io/tags/duilib/"/>
     
   </entry>
   
