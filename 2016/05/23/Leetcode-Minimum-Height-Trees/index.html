@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+
+  <html class="dark page-home">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>Leetcode-Minimum Height Trees | Dream&#39;s Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="dream,Hexo主题,C/C++,用户体验,设计" />
+  
+
+  <meta name="description" content="本题给你一个无向图，其中有n个顶点，n-1条边，因此取其中的任意某顶点作为根，都可以构建成一棵树。那么本题的问题就是在这些树中找出高度最小的树，返回树的根节点；如果有多课树的高度相同，则返回多个根节点。
+思路1：一开始，我认为最直白的解法就是遍历所有的节点，以该节点为根，求此树的高度。最后找出高度最小的树就是答案。此为暴力法，但是暴力一般往往会超时，本题也不例外。所以就得另辟蹊径咯。
+思路2：先找">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode-Minimum Height Trees">
+<meta property="og:url" content="http://dreamwuhi.github.io/2016/05/23/Leetcode-Minimum-Height-Trees/index.html">
+<meta property="og:site_name" content="Dream's Blog">
+<meta property="og:description" content="本题给你一个无向图，其中有n个顶点，n-1条边，因此取其中的任意某顶点作为根，都可以构建成一棵树。那么本题的问题就是在这些树中找出高度最小的树，返回树的根节点；如果有多课树的高度相同，则返回多个根节点。
+思路1：一开始，我认为最直白的解法就是遍历所有的节点，以该节点为根，求此树的高度。最后找出高度最小的树就是答案。此为暴力法，但是暴力一般往往会超时，本题也不例外。所以就得另辟蹊径咯。
+思路2：先找">
+<meta property="og:updated_time" content="2016-05-23T06:22:48.741Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Leetcode-Minimum Height Trees">
+<meta name="twitter:description" content="本题给你一个无向图，其中有n个顶点，n-1条边，因此取其中的任意某顶点作为根，都可以构建成一棵树。那么本题的问题就是在这些树中找出高度最小的树，返回树的根节点；如果有多课树的高度相同，则返回多个根节点。
+思路1：一开始，我认为最直白的解法就是遍历所有的节点，以该节点为根，求此树的高度。最后找出高度最小的树就是答案。此为暴力法，但是暴力一般往往会超时，本题也不例外。所以就得另辟蹊径咯。
+思路2：先找">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+<!-- Baidu Tongji -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a8c85de1e0c8ae1a4f0b0ed0219c4f56";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<!-- End Google Analytics -->
+
+</head>
+
+<body>
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Leetcode-Minimum-Height-Trees" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Leetcode-Minimum Height Trees</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.05.23</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Dream_Whui</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://dreamwuhi.github.io/2016/05/23/Leetcode-Minimum-Height-Trees/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>本题给你一个无向图，其中有n个顶点，n-1条边，因此取其中的任意某顶点作为根，都可以构建成一棵树。那么本题的问题就是在这些树中找出高度最小的树，返回树的根节点；如果有多课树的高度相同，则返回多个根节点。</p>
+<p>思路1：一开始，我认为最直白的解法就是遍历所有的节点，以该节点为根，求此树的高度。最后找出高度最小的树就是答案。此为暴力法，但是暴力一般往往会超时，本题也不例外。所以就得另辟蹊径咯。</p>
+<p>思路2：先找到所有的叶子节点，再删除所有的叶子节点，再继续目前的叶子节点，再删除掉。直到找不到叶子节点为止。那么最后一次找到的叶子节点就是要求的根节点。这题算是trick吧，自己多画几个图，或许可以发现这个规律。</p>
+<p>好了，代码如下。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; findMinHeightTrees(<span class="keyword">int</span> n, <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;&amp; edges) &#123;</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;adj(n);</span><br><span class="line">		<span class="comment">//构建邻接表</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;edges.size(); ++i)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> x = edges[i].first;</span><br><span class="line">			<span class="keyword">int</span> y = edges[i].second;</span><br><span class="line">			adj[x].push_back(y);</span><br><span class="line">			adj[y].push_back(x);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//处理边缘条件</span></span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;res;</span><br><span class="line">		<span class="keyword">if</span>(edges.size() == <span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			res.push_back(edges[<span class="number">0</span>].first);</span><br><span class="line">			res.push_back(edges[<span class="number">0</span>].second);</span><br><span class="line">			return res;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(edges.size() == <span class="number">0</span>)</span><br><span class="line">			return res;</span><br><span class="line">		<span class="comment">//找叶子节点</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;adj.size(); ++i)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(adj[i].size() == <span class="number">1</span>)</span><br><span class="line">				res.push_back(i);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//删除叶子节点，再找叶子节点</span></span><br><span class="line">		<span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; next;<span class="comment">//保存叶子节点</span></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;res.size(); ++i)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">int</span> node = res[i];</span><br><span class="line">				<span class="comment">//删除叶子节点</span></span><br><span class="line">				adj[adj[node][<span class="number">0</span>]].erase(find(adj[adj[node][<span class="number">0</span>]].begin(),adj[adj[node][<span class="number">0</span>]].end(),node));</span><br><span class="line">				<span class="keyword">if</span>(adj[adj[node][<span class="number">0</span>]].size() == <span class="number">1</span>)</span><br><span class="line">					next.push_back(adj[node][<span class="number">0</span>]);<span class="comment">//添加叶子节点</span></span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(next.empty())<span class="comment">//找不到叶子节点</span></span><br><span class="line">				return res;	<span class="comment">//返回上一次找到的叶子节点</span></span><br><span class="line">			res = next;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'dreamwuhi';
+    
+    var disqus_url = 'http://dreamwuhi.github.io/2016/05/23/Leetcode-Minimum-Height-Trees/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//dreamwuhi.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
