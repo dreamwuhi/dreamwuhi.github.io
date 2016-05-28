@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dreamwuhi.github.io/"/>
-  <updated>2016-05-23T06:26:18.763Z</updated>
+  <updated>2016-05-28T03:52:12.896Z</updated>
   <id>http://dreamwuhi.github.io/</id>
   
   <author>
@@ -14,6 +14,25 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>恒生面试</title>
+    <link href="http://dreamwuhi.github.io/2016/05/28/%E6%81%92%E7%94%9F%E9%9D%A2%E8%AF%95/"/>
+    <id>http://dreamwuhi.github.io/2016/05/28/恒生面试/</id>
+    <published>2016-05-28T03:45:29.000Z</published>
+    <updated>2016-05-28T03:52:12.896Z</updated>
+    
+    <content type="html">&lt;p&gt;周日笔试，周四收到电话通知，周五去面试。&lt;br&gt;面试的形式是一个部门经理，同时面两个学生。&lt;br&gt;和我主要聊了网络模型，其中的一个项目中的一些东西，操作系统，数据库，网络等的一些基础知识。&lt;br&gt;总体来说，恒生的面试偏简单，没有网易的复杂。而且，恒生这边还是蛮急用C/C++开发的。&lt;br&gt;不过比较遗憾的是，经理要求最好能够连续实习5-6个月，前两个月教你一些基础的业务，让你熟悉业务环境，基础技术。&lt;br&gt;后面就可以直接上手干项目。不过，由于我本人研究生，时间并没有那么多，所以去不成！！&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;周日笔试，周四收到电话通知，周五去面试。&lt;br&gt;面试的形式是一个部门经理，同时面两个学生。&lt;br&gt;和我主要聊了网络模型，其中的一个项目中的一些东西，操作系统，数据库，网络等的一些基础知识。&lt;br&gt;总体来说，恒生的面试偏简单，没有网易的复杂。而且，恒生这边还是蛮急用C/C++
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Leetcode-Minimum Height Trees</title>
