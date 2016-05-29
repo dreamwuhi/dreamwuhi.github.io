@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dreamwuhi.github.io/"/>
-  <updated>2016-05-29T06:40:35.546Z</updated>
+  <updated>2016-05-29T09:11:34.531Z</updated>
   <id>http://dreamwuhi.github.io/</id>
   
   <author>
@@ -14,6 +14,86 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode-Summary Ranges</title>
+    <link href="http://dreamwuhi.github.io/2016/05/29/Leetcode-Summary-Ranges/"/>
+    <id>http://dreamwuhi.github.io/2016/05/29/Leetcode-Summary-Ranges/</id>
+    <published>2016-05-29T08:56:30.000Z</published>
+    <updated>2016-05-29T09:11:34.531Z</updated>
+    
+    <content type="html">&lt;p&gt;本题给你一个已经排好序的整形数组（元素不会出现重复），求其中数字连续的片段。&lt;br&gt;例如：A[0,1,2,4,5,7],返回[“0-2”,”4-&amp;gt;5”,”7”].&lt;/p&gt;
+&lt;p&gt;本题思路：从头遍历一遍数组，如果a[i]+1 != a[i+1]，那么在a[i]与a[i+1]不连续，就输出a[start]-&amp;gt;a[i]，其中start为开始的位置，提前记录下就好。&lt;br&gt;几个注意点：&lt;br&gt;1、如果连续片段只有一个数字，就只输出该数字，并非”数字-&amp;gt;数字”&lt;br&gt;2、每次开始找连续片段前，可以提前判断下是否有丢失的数字，如果没有，就没必要遍历，直接可以返回。&lt;br&gt;例如：A[1,2,3,4,5] 因为，A[4]-A[0]+1 == A.size()。表示数组是连续的，没有数字丢失。因此就可以直接返回结果，节省时间。&lt;br&gt;3、整形数组，考虑它的范围&lt;br&gt;4、边缘条件：空数组，元素只要一个&lt;/p&gt;
+&lt;p&gt;代码如下&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;C++&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; Solution {
+&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt;:
+    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;ToString&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; n)&lt;/span&gt;
+    &lt;/span&gt;{
+        &lt;span class=&quot;keyword&quot;&gt;char&lt;/span&gt; r[&lt;span class=&quot;number&quot;&gt;32&lt;/span&gt;];
+        &lt;span class=&quot;built_in&quot;&gt;sprintf&lt;/span&gt;(r,&lt;span class=&quot;string&quot;&gt;&quot;%d&quot;&lt;/span&gt;,n);
+        return &lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;(r);
+    }
+    &lt;span class=&quot;built_in&quot;&gt;vector&lt;/span&gt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;&amp;gt; summaryRanges(&lt;span class=&quot;built_in&quot;&gt;vector&lt;/span&gt;&amp;lt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;&amp;gt;&amp;amp; nums) 
+    {
+        &lt;span class=&quot;built_in&quot;&gt;vector&lt;/span&gt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;&amp;gt;res;
+        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(nums.empty()) return res;  &lt;span class=&quot;comment&quot;&gt;//边缘条件&lt;/span&gt;
+        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(nums.size() == &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)         
+        {
+            res.push_back(ToString(nums.front()));
+            return res;
+        }
+        &lt;span class=&quot;keyword&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;long&lt;/span&gt; cnt = nums.back() - nums.front() + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt; - nums.size();  &lt;span class=&quot;comment&quot;&gt;//判断数组片段是否连续&lt;/span&gt;
+        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(cnt == &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;) 
+        {
+            res.push_back(ToString(nums.front())+&lt;span class=&quot;string&quot;&gt;&quot;-&amp;gt;&quot;&lt;/span&gt;+ToString(nums.back()));
+            return res;
+        }
+        &lt;span class=&quot;keyword&quot;&gt;bool&lt;/span&gt; flag = &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;;
+        &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; startIndex , i;
+        &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (i=&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i&amp;lt;nums.size() &amp;amp;&amp;amp; cnt != &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;++i)
+        {
+            &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(!flag)
+            {
+                startIndex = i;&lt;span class=&quot;comment&quot;&gt;//记录每次开始寻找时的起始位置&lt;/span&gt;
+                &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(nums.back() - nums[i] + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt; == nums.size() - i)&lt;span class=&quot;comment&quot;&gt;//判断从该起始位置开始到数组末尾，是否为连续的数组&lt;/span&gt;
+                {
+                    cnt = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;
+                    &lt;span class=&quot;keyword&quot;&gt;break&lt;/span&gt;;
+                }
+                flag = &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;;
+            }
+            &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(nums[i] + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt; != nums[i+&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;])    &lt;span class=&quot;comment&quot;&gt;//相邻元素间判断&lt;/span&gt;
+            {
+                &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(startIndex == i)
+                    res.push_back(ToString(nums[startIndex]));
+                &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;
+                    res.push_back(ToString(nums[startIndex])+&lt;span class=&quot;string&quot;&gt;&quot;-&amp;gt;&quot;&lt;/span&gt;+ToString(nums[i]));
+                flag = &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;;
+                cnt--;
+            }
+        }
+        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(cnt == &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)
+        {
+            &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(i&amp;lt;nums.size()&lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt;)
+                res.push_back(ToString(nums[i])+&lt;span class=&quot;string&quot;&gt;&quot;-&amp;gt;&quot;&lt;/span&gt;+ToString(nums.back()));
+            &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;
+                res.push_back(ToString(nums[i]));
+        }
+        return res;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本题给你一个已经排好序的整形数组（元素不会出现重复），求其中数字连续的片段。&lt;br&gt;例如：A[0,1,2,4,5,7],返回[“0-2”,”4-&amp;gt;5”,”7”].&lt;/p&gt;
+&lt;p&gt;本题思路：从头遍历一遍数组，如果a[i]+1 != a[i+1]，那么在a[i]与a[i+
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Leetcode-Integer Break</title>
