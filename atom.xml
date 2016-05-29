@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dreamwuhi.github.io/"/>
-  <updated>2016-05-28T03:52:12.896Z</updated>
+  <updated>2016-05-29T06:35:28.064Z</updated>
   <id>http://dreamwuhi.github.io/</id>
   
   <author>
@@ -14,6 +14,25 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode-Integer Break</title>
+    <link href="http://dreamwuhi.github.io/2016/05/29/Leetcode-Integer-Break/"/>
+    <id>http://dreamwuhi.github.io/2016/05/29/Leetcode-Integer-Break/</id>
+    <published>2016-05-29T06:25:54.000Z</published>
+    <updated>2016-05-29T06:35:28.064Z</updated>
+    
+    <content type="html">&lt;p&gt;本题的题意是给定一个整数N，将其拆分为至少两个正数，且这些正数的和为N，求所有拆分种类中这些正数的乘积最大！&lt;br&gt;思路，枚举发现规律。&lt;br&gt;如下：7 = 3+2+2  12&lt;br&gt;     8 = 3+3+2  18&lt;br&gt;     9 = 3+3+3  27&lt;br&gt;     10 = 3+3+2+2 36&lt;br&gt;可以发现，N = 3a+2b,(a,b为数字3，数字2的个数)，因此，可以先通过N/3求得有多少个3构成，如果余数为0，则没有数字2；余数为2，则有一个2；余数为1，则数字3减少1个，添加两个2（如10=3+3+3+1-&amp;gt;3+3+2+2）。&lt;br&gt;最后考虑边缘条件，当N=2，N=3的情况。&lt;br&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; Solution &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;integerBreak&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; n)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(n==&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;) return &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;&lt;span class=&quot;comment&quot;&gt;//边缘情况&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(n==&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;) return &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(n % &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt; == &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)		&lt;span class=&quot;comment&quot;&gt;//余数为0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			return (int)&lt;span class=&quot;built_in&quot;&gt;pow&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;3.0&lt;/span&gt;,n/&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(n % &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt; == &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;) &lt;span class=&quot;comment&quot;&gt;//余数为2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			return (int)&lt;span class=&quot;built_in&quot;&gt;pow&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;3.0&lt;/span&gt;,n/&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;) * &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;				&lt;span class=&quot;comment&quot;&gt;//余数为1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			return (int)&lt;span class=&quot;built_in&quot;&gt;pow&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;3.0&lt;/span&gt;,n/&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt;) * &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本题的题意是给定一个整数N，将其拆分为至少两个正数，且这些正数的和为N，求所有拆分种类中这些正数的乘积最大！&lt;br&gt;思路，枚举发现规律。&lt;br&gt;如下：7 = 3+2+2  12&lt;br&gt;     8 = 3+3+2  18&lt;br&gt;     9 = 3+3+3  27&lt;br&gt; 
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>恒生面试</title>
