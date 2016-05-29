@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dreamwuhi.github.io/"/>
-  <updated>2016-05-29T09:11:34.531Z</updated>
+  <updated>2016-05-29T09:12:28.522Z</updated>
   <id>http://dreamwuhi.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://dreamwuhi.github.io/2016/05/29/Leetcode-Summary-Ranges/"/>
     <id>http://dreamwuhi.github.io/2016/05/29/Leetcode-Summary-Ranges/</id>
     <published>2016-05-29T08:56:30.000Z</published>
-    <updated>2016-05-29T09:11:34.531Z</updated>
+    <updated>2016-05-29T09:12:28.522Z</updated>
     
     <content type="html">&lt;p&gt;本题给你一个已经排好序的整形数组（元素不会出现重复），求其中数字连续的片段。&lt;br&gt;例如：A[0,1,2,4,5,7],返回[“0-2”,”4-&amp;gt;5”,”7”].&lt;/p&gt;
 &lt;p&gt;本题思路：从头遍历一遍数组，如果a[i]+1 != a[i+1]，那么在a[i]与a[i+1]不连续，就输出a[start]-&amp;gt;a[i]，其中start为开始的位置，提前记录下就好。&lt;br&gt;几个注意点：&lt;br&gt;1、如果连续片段只有一个数字，就只输出该数字，并非”数字-&amp;gt;数字”&lt;br&gt;2、每次开始找连续片段前，可以提前判断下是否有丢失的数字，如果没有，就没必要遍历，直接可以返回。&lt;br&gt;例如：A[1,2,3,4,5] 因为，A[4]-A[0]+1 == A.size()。表示数组是连续的，没有数字丢失。因此就可以直接返回结果，节省时间。&lt;br&gt;3、整形数组，考虑它的范围&lt;br&gt;4、边缘条件：空数组，元素只要一个&lt;/p&gt;
