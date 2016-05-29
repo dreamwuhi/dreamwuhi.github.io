@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Dream's Blog">
 <meta property="og:description" content="本题给你一个已经排好序的整形数组（元素不会出现重复），求其中数字连续的片段。例如：A[0,1,2,4,5,7],返回[“0-2”,”4-&amp;gt;5”,”7”].
 本题思路：从头遍历一遍数组，如果a[i]+1 != a[i+1]，那么在a[i]与a[i+1]不连续，就输出a[start]-&amp;gt;a[i]，其中start为开始的位置，提前记录下就好。几个注意点：1、如果连续片段只有一个数字，就只输出">
-<meta property="og:updated_time" content="2016-05-29T09:12:28.522Z">
+<meta property="og:updated_time" content="2016-05-29T09:45:41.164Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode-Summary Ranges">
 <meta name="twitter:description" content="本题给你一个已经排好序的整形数组（元素不会出现重复），求其中数字连续的片段。例如：A[0,1,2,4,5,7],返回[“0-2”,”4-&amp;gt;5”,”7”].
@@ -191,65 +191,7 @@ var _hmt = _hmt || [];
     
       <p>本题给你一个已经排好序的整形数组（元素不会出现重复），求其中数字连续的片段。<br>例如：A[0,1,2,4,5,7],返回[“0-2”,”4-&gt;5”,”7”].</p>
 <p>本题思路：从头遍历一遍数组，如果a[i]+1 != a[i+1]，那么在a[i]与a[i+1]不连续，就输出a[start]-&gt;a[i]，其中start为开始的位置，提前记录下就好。<br>几个注意点：<br>1、如果连续片段只有一个数字，就只输出该数字，并非”数字-&gt;数字”<br>2、每次开始找连续片段前，可以提前判断下是否有丢失的数字，如果没有，就没必要遍历，直接可以返回。<br>例如：A[1,2,3,4,5] 因为，A[4]-A[0]+1 == A.size()。表示数组是连续的，没有数字丢失。因此就可以直接返回结果，节省时间。<br>3、整形数组，考虑它的范围<br>4、边缘条件：空数组，元素只要一个</p>
-<p>代码如下</p>
-<pre><code class="C++"><span class="keyword">class</span> Solution {
-<span class="keyword">public</span>:
-    <span class="function"><span class="built_in">string</span> <span class="title">ToString</span><span class="params">(<span class="keyword">int</span> n)</span>
-    </span>{
-        <span class="keyword">char</span> r[<span class="number">32</span>];
-        <span class="built_in">sprintf</span>(r,<span class="string">"%d"</span>,n);
-        return <span class="built_in">string</span>(r);
-    }
-    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; summaryRanges(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) 
-    {
-        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;res;
-        <span class="keyword">if</span>(nums.empty()) return res;  <span class="comment">//边缘条件</span>
-        <span class="keyword">if</span>(nums.size() == <span class="number">1</span>)         
-        {
-            res.push_back(ToString(nums.front()));
-            return res;
-        }
-        <span class="keyword">long</span> <span class="keyword">long</span> cnt = nums.back() - nums.front() + <span class="number">1</span> - nums.size();  <span class="comment">//判断数组片段是否连续</span>
-        <span class="keyword">if</span>(cnt == <span class="number">0</span>) 
-        {
-            res.push_back(ToString(nums.front())+<span class="string">"-&gt;"</span>+ToString(nums.back()));
-            return res;
-        }
-        <span class="keyword">bool</span> flag = <span class="literal">false</span>;
-        <span class="keyword">int</span> startIndex , i;
-        <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;nums.size() &amp;&amp; cnt != <span class="number">0</span>;++i)
-        {
-            <span class="keyword">if</span>(!flag)
-            {
-                startIndex = i;<span class="comment">//记录每次开始寻找时的起始位置</span>
-                <span class="keyword">if</span>(nums.back() - nums[i] + <span class="number">1</span> == nums.size() - i)<span class="comment">//判断从该起始位置开始到数组末尾，是否为连续的数组</span>
-                {
-                    cnt = <span class="number">0</span>;
-                    <span class="keyword">break</span>;
-                }
-                flag = <span class="literal">true</span>;
-            }
-            <span class="keyword">if</span>(nums[i] + <span class="number">1</span> != nums[i+<span class="number">1</span>])    <span class="comment">//相邻元素间判断</span>
-            {
-                <span class="keyword">if</span>(startIndex == i)
-                    res.push_back(ToString(nums[startIndex]));
-                <span class="keyword">else</span>
-                    res.push_back(ToString(nums[startIndex])+<span class="string">"-&gt;"</span>+ToString(nums[i]));
-                flag = <span class="literal">false</span>;
-                cnt--;
-            }
-        }
-        <span class="keyword">if</span>(cnt == <span class="number">0</span>)
-        {
-            <span class="keyword">if</span>(i&lt;nums.size()<span class="number">-1</span>)
-                res.push_back(ToString(nums[i])+<span class="string">"-&gt;"</span>+ToString(nums.back()));
-            <span class="keyword">else</span>
-                res.push_back(ToString(nums[i]));
-        }
-        return res;
-    }
-};
-</code></pre>
+<p>代码如下<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="built_in">string</span> <span class="title">ToString</span><span class="params">(<span class="keyword">int</span> n)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">char</span> r[<span class="number">32</span>];</span><br><span class="line">		<span class="built_in">sprintf</span>(r,<span class="string">"%d"</span>,n);</span><br><span class="line">		return <span class="built_in">string</span>(r);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; summaryRanges(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;res;</span><br><span class="line">		<span class="keyword">if</span>(nums.empty()) return res;  <span class="comment">//边缘条件</span></span><br><span class="line">		<span class="keyword">if</span>(nums.size() == <span class="number">1</span>) 		</span><br><span class="line">		&#123;</span><br><span class="line">			res.push_back(ToString(nums.front()));</span><br><span class="line">			return res;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> cnt = nums.back() - nums.front() + <span class="number">1</span> - nums.size();  <span class="comment">//判断数组片段是否连续</span></span><br><span class="line">		<span class="keyword">if</span>(cnt == <span class="number">0</span>) </span><br><span class="line">		&#123;</span><br><span class="line">			res.push_back(ToString(nums.front())+<span class="string">"-&gt;"</span>+ToString(nums.back()));</span><br><span class="line">			return res;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">int</span> startIndex , i;</span><br><span class="line">		<span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;nums.size() &amp;&amp; cnt != <span class="number">0</span>;++i)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(!flag)</span><br><span class="line">			&#123;</span><br><span class="line">				startIndex = i;<span class="comment">//记录每次开始寻找时的起始位置</span></span><br><span class="line">				<span class="keyword">if</span>(nums.back() - nums[i] + <span class="number">1</span> == nums.size() - i)<span class="comment">//判断从该起始位置开始到数组末尾，是否为连续的数组</span></span><br><span class="line">				&#123;</span><br><span class="line">					cnt = <span class="number">0</span>;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				flag = <span class="literal">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(nums[i] + <span class="number">1</span> != nums[i+<span class="number">1</span>])	<span class="comment">//相邻元素间判断</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span>(startIndex == i)</span><br><span class="line">					res.push_back(ToString(nums[startIndex]));</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					res.push_back(ToString(nums[startIndex])+<span class="string">"-&gt;"</span>+ToString(nums[i]));</span><br><span class="line">				flag = <span class="literal">false</span>;</span><br><span class="line">				cnt--;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(cnt == <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(i&lt;nums.size()<span class="number">-1</span>)</span><br><span class="line">				res.push_back(ToString(nums[i])+<span class="string">"-&gt;"</span>+ToString(nums.back()));</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				res.push_back(ToString(nums[i]));</span><br><span class="line">		&#125;</span><br><span class="line">		return res;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 
     
   </div>
