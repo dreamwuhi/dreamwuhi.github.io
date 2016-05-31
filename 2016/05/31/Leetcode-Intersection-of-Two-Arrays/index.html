@@ -7,24 +7,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>duilib开发微信界面 | Dream&#39;s Blog</title>
+  <title>Leetcode--Intersection of Two Arrays | Dream&#39;s Blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="duilib,Win32," />
+    <meta name="keywords" content="Leetcode," />
   
 
-  <meta name="description" content="采用Duilib开源框架开发PC端微信">
+  <meta name="description" content="本题的题意是有两个数组，求数组的交集。
+思路：假如有数组A，B，那么可以遍历数组B的元素，查看是否有在A中出现，如果有，就是交集中的一个元素。注意点：1、如果B中的某个元素是交集中的元素，且该元素在B中重复出现，就不要再讲其放入到交集中了，因为交集中的元素要保证唯一性。可以采用std::set，先将A，B中重复的元素提前过滤掉，再讲B中元素一次插入到A中，如果插入失败，说明此元素是交集中的一元。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="duilib开发微信界面">
-<meta property="og:url" content="http://dreamwuhi.github.io/2016/04/10/duilib开发微信界面/index.html">
+<meta property="og:title" content="Leetcode--Intersection of Two Arrays">
+<meta property="og:url" content="http://dreamwuhi.github.io/2016/05/31/Leetcode-Intersection-of-Two-Arrays/index.html">
 <meta property="og:site_name" content="Dream's Blog">
-<meta property="og:description" content="采用Duilib开源框架开发PC端微信">
-<meta property="og:updated_time" content="2016-04-11T10:40:30.068Z">
+<meta property="og:description" content="本题的题意是有两个数组，求数组的交集。
+思路：假如有数组A，B，那么可以遍历数组B的元素，查看是否有在A中出现，如果有，就是交集中的一个元素。注意点：1、如果B中的某个元素是交集中的元素，且该元素在B中重复出现，就不要再讲其放入到交集中了，因为交集中的元素要保证唯一性。可以采用std::set，先将A，B中重复的元素提前过滤掉，再讲B中元素一次插入到A中，如果插入失败，说明此元素是交集中的一元。">
+<meta property="og:updated_time" content="2016-05-31T02:55:05.501Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="duilib开发微信界面">
-<meta name="twitter:description" content="采用Duilib开源框架开发PC端微信">
+<meta name="twitter:title" content="Leetcode--Intersection of Two Arrays">
+<meta name="twitter:description" content="本题的题意是有两个数组，求数组的交集。
+思路：假如有数组A，B，那么可以遍历数组B的元素，查看是否有在A中出现，如果有，就是交集中的一个元素。注意点：1、如果B中的某个元素是交集中的元素，且该元素在B中重复出现，就不要再讲其放入到交集中了，因为交集中的元素要保证唯一性。可以采用std::set，先将A，B中重复的元素提前过滤掉，再讲B中元素一次插入到A中，如果插入失败，说明此元素是交集中的一元。">
 
   
 
@@ -151,22 +154,17 @@ var _hmt = _hmt || [];
 </div>
 
 
-  <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#采用Duilib开源框架开发PC端微信"><span class="toc-text">采用Duilib开源框架开发PC端微信</span></a></li></ol>
-  </div>
-
 
 
 <div class="content content-post CENTER">
-   <article id="post-duilib开发微信界面" class="article article-type-post" itemprop="blogPost">
+   <article id="post-Leetcode-Intersection-of-Two-Arrays" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">duilib开发微信界面</h1>
+    <h1 class="post-title">Leetcode--Intersection of Two Arrays</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2016.04.10</span>
+        <span>2016.05.31</span>
       </span>
 
       
@@ -177,17 +175,12 @@ var _hmt = _hmt || [];
       
 
       
-  <span class="article-category">
-    <i class="icon-list"></i>
-    <a class="article-category-link" href="/categories/微信界面开发/">微信界面开发</a>
-  </span>
-
 
 
       
         <span>
           <i class="icon-comment"></i>
-          <a href="http://dreamwuhi.github.io/2016/04/10/duilib开发微信界面/#disqus_thread"></a>
+          <a href="http://dreamwuhi.github.io/2016/05/31/Leetcode-Intersection-of-Two-Arrays/#disqus_thread"></a>
         </span>
       
 
@@ -196,7 +189,10 @@ var _hmt = _hmt || [];
 
   <div class="article-content">
     
-      <h2 id="采用Duilib开源框架开发PC端微信"><a href="#采用Duilib开源框架开发PC端微信" class="headerlink" title="采用Duilib开源框架开发PC端微信"></a>采用Duilib开源框架开发PC端微信</h2>
+      <p>本题的题意是有两个数组，求数组的交集。</p>
+<p>思路：假如有数组A，B，那么可以遍历数组B的元素，查看是否有在A中出现，如果有，就是交集中的一个元素。<br>注意点：<br>1、如果B中的某个元素是交集中的元素，且该元素在B中重复出现，就不要再讲其放入到交集中了，因为交集中的元素要保证唯一性。<br>可以采用std::set，先将A，B中重复的元素提前过滤掉，再讲B中元素一次插入到A中，如果插入失败，说明此元素是交集中的一元。</p>
+<p>代码：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intersection(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2) &#123;</span><br><span class="line">		<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; h1;<span class="comment">//过滤A中重复的元素</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums1.size(); ++i)</span><br><span class="line">			h1.insert(nums1[i]);</span><br><span class="line">		<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; h2;<span class="comment">//过滤B中重复的元素</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums2.size(); ++i)</span><br><span class="line">			h2.insert(nums2[i]);</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;r;</span><br><span class="line">		<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt;::iterator it = h2.begin();</span><br><span class="line">		<span class="keyword">while</span>(it != h2.end())<span class="comment">//求交集</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(!h1.insert(*it).second)</span><br><span class="line">				r.push_back(*it);</span><br><span class="line">			it++;</span><br><span class="line">		&#125;</span><br><span class="line">		return r;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+
     
   </div>
 </article>
@@ -311,7 +307,7 @@ var _hmt = _hmt || [];
   <script>
     var disqus_shortname = 'dreamwuhi';
     
-    var disqus_url = 'http://dreamwuhi.github.io/2016/04/10/duilib开发微信界面/';
+    var disqus_url = 'http://dreamwuhi.github.io/2016/05/31/Leetcode-Intersection-of-Two-Arrays/';
     
     (function(){
       var dsq = document.createElement('script');
