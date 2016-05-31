@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+
+  <html class="dark page-home">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>Leetcode-Range Sum Query 2D immutable | Dream&#39;s Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Leetcode," />
+  
+
+  <meta name="description" content="本题的题意给出一个矩阵，再给定两个坐标，分别表示子矩阵左上角与右下角的坐标，求子矩阵元素总和。例如：矩阵 A=[[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]],子矩阵左上角坐标（0，1），右下角坐标（2，3）那么，sum(0,1,2,3) = 2+3+4+6+7+8+10+11+12=63
+思路：最直接的方法就是直接遍历子矩阵的所有元素，就可以搞定！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode-Range Sum Query 2D immutable">
+<meta property="og:url" content="http://dreamwuhi.github.io/2016/05/31/Leetcode-Range-Sum-Query-2D-immutable/index.html">
+<meta property="og:site_name" content="Dream's Blog">
+<meta property="og:description" content="本题的题意给出一个矩阵，再给定两个坐标，分别表示子矩阵左上角与右下角的坐标，求子矩阵元素总和。例如：矩阵 A=[[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]],子矩阵左上角坐标（0，1），右下角坐标（2，3）那么，sum(0,1,2,3) = 2+3+4+6+7+8+10+11+12=63
+思路：最直接的方法就是直接遍历子矩阵的所有元素，就可以搞定！">
+<meta property="og:updated_time" content="2016-05-31T03:23:53.421Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Leetcode-Range Sum Query 2D immutable">
+<meta name="twitter:description" content="本题的题意给出一个矩阵，再给定两个坐标，分别表示子矩阵左上角与右下角的坐标，求子矩阵元素总和。例如：矩阵 A=[[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]],子矩阵左上角坐标（0，1），右下角坐标（2，3）那么，sum(0,1,2,3) = 2+3+4+6+7+8+10+11+12=63
+思路：最直接的方法就是直接遍历子矩阵的所有元素，就可以搞定！">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+<!-- Baidu Tongji -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a8c85de1e0c8ae1a4f0b0ed0219c4f56";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<!-- End Google Analytics -->
+
+</head>
+
+<body>
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Leetcode-Range-Sum-Query-2D-immutable" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Leetcode-Range Sum Query 2D immutable</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.05.31</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Dream_Whui</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://dreamwuhi.github.io/2016/05/31/Leetcode-Range-Sum-Query-2D-immutable/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>本题的题意给出一个矩阵，再给定两个坐标，分别表示子矩阵左上角与右下角的坐标，求子矩阵元素总和。<br>例如：<br>矩阵 A=[[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]],子矩阵左上角坐标（0，1），右下角坐标（2，3）<br>那么，sum(0,1,2,3) = 2+3+4+6+7+8+10+11+12=63</p>
+<p>思路：最直接的方法就是直接遍历子矩阵的所有元素，就可以搞定！时间复杂度为O(n^2)，但是超时了，因此需要优化。<br>受到积分图的启发，可以实现时间复杂度为O(1)!，什么！这么快。什么是积分图？<br>积分图的定义：矩阵中的某元素A的积分是矩阵左上角的顶点与A点围成的矩阵所有元素的总和。<br>即dp[i][j] = m(0,0)+m(0,1)+m(0,2)…+m(i,j);<br>因此，第一步先计算矩阵M中所有元素的积分dp[i][j]；<br>dp[i][j] = dp[i-1][j]+dp[i][j-1]-dp[i-1][j-1]+m[i][j];  (i&gt;=1,j&gt;=1)<br>dp[i][j] = dp[i][j-1] + m[i][j];  (i==0)<br>dp[i][j] = dp[i-1][j] + m[i][j];  (j==0)<br>dp[i][j] = m[i][j];     (i==j==0)<br>计算完积分图后，求子矩阵元素和，就可以直接在O(1)的时间复杂度下计算出了。<br>子矩阵的两个坐标为a(row1,col1),b(row2,col2)<br>res = dp[row2][col2] - dp[row2][col1-1] - dp[row1-1][col2] + dp[row1-1][col1-1];   (row1&gt;=1,col1&gt;=1)<br>res = dp[row2][col2]-dp[row1-1][col2];   (col1==0) //第一列<br>res = dp[row2][col2] - dp[row2][col1-1];  (row1==0) //第一行<br>res = dp[row2][col2];   (row1==col1==0)<br>注意点：考虑边缘条件，矩阵m为空。</p>
+<p>代码：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> NumMatrix &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">bool</span> empty;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dp;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	NumMatrix(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp;matrix) &#123;</span><br><span class="line">		<span class="keyword">int</span> row = matrix.size();</span><br><span class="line">		<span class="keyword">if</span>(row &gt;<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			empty = <span class="literal">false</span>;</span><br><span class="line">			<span class="keyword">int</span> col = matrix[<span class="number">0</span>].size();</span><br><span class="line">			dp.resize(row);</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; ++i)</span><br><span class="line">				dp[i].resize(col);</span><br><span class="line">			dp[<span class="number">0</span>][<span class="number">0</span>]=matrix[<span class="number">0</span>][<span class="number">0</span>];   <span class="comment">//处理原点</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;col; ++j) <span class="comment">//处理第一行</span></span><br><span class="line">				dp[<span class="number">0</span>][j] = dp[<span class="number">0</span>][j<span class="number">-1</span>] + matrix[<span class="number">0</span>][j];</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;row; ++i)  <span class="comment">//处理第一列</span></span><br><span class="line">				dp[i][<span class="number">0</span>] = dp[i<span class="number">-1</span>][<span class="number">0</span>] + matrix[i][<span class="number">0</span>];</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;row; ++i)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;col; ++j)</span><br><span class="line">				&#123;</span><br><span class="line">					dp[i][j] = dp[i][j<span class="number">-1</span>]+dp[i<span class="number">-1</span>][j]-dp[i<span class="number">-1</span>][j<span class="number">-1</span>]+matrix[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			empty = <span class="literal">true</span>;  <span class="comment">//矩阵为空</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">sumRegion</span><span class="params">(<span class="keyword">int</span> row1, <span class="keyword">int</span> col1, <span class="keyword">int</span> row2, <span class="keyword">int</span> col2)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(empty)</span><br><span class="line">			return <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span>(row1==<span class="number">0</span> &amp;&amp; col1==<span class="number">0</span>)</span><br><span class="line">			return dp[row2][col2];</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(row1==<span class="number">0</span>)</span><br><span class="line">			return dp[row2][col2] - dp[row2][col1<span class="number">-1</span>];</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(col1==<span class="number">0</span>)</span><br><span class="line">			return dp[row2][col2]-dp[row1<span class="number">-1</span>][col2];</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			return dp[row2][col2] + dp[row1<span class="number">-1</span>][col1<span class="number">-1</span>] - dp[row2][col1<span class="number">-1</span>] - dp[row1<span class="number">-1</span>][col2];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'dreamwuhi';
+    
+    var disqus_url = 'http://dreamwuhi.github.io/2016/05/31/Leetcode-Range-Sum-Query-2D-immutable/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//dreamwuhi.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
