@@ -266,6 +266,136 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/02/数据结构-三数之和为零/" itemprop="url">
+                  数据结构-三数之和为零
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-02T19:52:26+08:00" content="2016-06-02">
+              2016-06-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/02/数据结构-三数之和为零/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/数据结构-三数之和为零/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/06/02/数据结构-三数之和为零/" class="leancloud_visitors" data-flag-title="数据结构-三数之和为零">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>题意:给定一个排序数组（小-&gt;大），取数组中的三个元素a,b,c;满足a+b+c=0,a&lt;=b&lt;=c;<br>举例：A=[-1,-1,-1,0,1,2,3],result=[-1,-1,2],[-1,0,1];<br>思路：双指针思想+枚举。<br>当枚举数组的第一个元素时，设置两个指针left,right分别指向数组的第一元素和最后一个元素。<br>当a[left]+a[right] &gt; (-a[i]),right–      (0&lt;=i<n-1) 当a[left]+a[right]="" <="" (-a[i]),left++="" (0<="i<n-1)" 当a[left]+a[ruight]="=" (-a[i])，即找到了三元素a,b,c;="" 注意点：="" （1）当a[i]="">0时，直接结束，因为数组是递增的，绝不会再出现a+b+c=0的情况；<br>（2）去掉重复判断，当a[i-1]==a[i],可以直接跳过第i次循环</n-1)></p>
+<p>代码：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(n == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(n,<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cin</span>&gt;&gt;dp[i];</span><br><span class="line">		&#125;</span><br><span class="line">		sort(dp.begin(),dp.end());</span><br><span class="line">		<span class="comment">//双指针</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(dp[i] &gt;<span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">if</span>(i&gt;<span class="number">0</span> &amp;&amp; dp[i<span class="number">-1</span>]==dp[i])</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">int</span> a = dp[i];</span><br><span class="line">			<span class="keyword">int</span> left = i+<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">int</span> right = n<span class="number">-1</span>;</span><br><span class="line">			<span class="keyword">while</span>(left &lt; right)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">int</span> b = dp[left];</span><br><span class="line">				<span class="keyword">int</span> c = dp[right];</span><br><span class="line">				<span class="keyword">if</span>(-a &lt; b + c)</span><br><span class="line">					right--;</span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span>(-a &gt; b + c)</span><br><span class="line">					left++;</span><br><span class="line">				<span class="keyword">else</span> </span><br><span class="line">				&#123;</span><br><span class="line">					<span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="string">" "</span>&lt;&lt;b&lt;&lt;<span class="string">" "</span>&lt;&lt;c&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">					<span class="keyword">do</span></span><br><span class="line">					&#123;</span><br><span class="line">						left++;</span><br><span class="line">					&#125; <span class="keyword">while</span> (left &lt; right &amp;&amp; dp[left<span class="number">-1</span>] == dp[left]);</span><br><span class="line">					<span class="keyword">do</span></span><br><span class="line">					&#123;</span><br><span class="line">						right--;</span><br><span class="line">					&#125; <span class="keyword">while</span> (left &lt; right &amp;&amp; dp[right+<span class="number">1</span>] == dp[right]); </span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/02/数据结构-数组去重/" itemprop="url">
                   数据结构-数组去重
                 </a>
@@ -1429,139 +1559,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/19/Leetcode-Palindrome-Linked-List/" itemprop="url">
-                  Leetcode-Palindrome Linked List
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-19T20:03:48+08:00" content="2016-05-19">
-              2016-05-19
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/数据结构/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/19/Leetcode-Palindrome-Linked-List/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/19/Leetcode-Palindrome-Linked-List/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/05/19/Leetcode-Palindrome-Linked-List/" class="leancloud_visitors" data-flag-title="Leetcode-Palindrome Linked List">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>今天看了ICPC-2016WF，瞬间又燃起了刷题的兴趣。研一的时候玩了好几个月，后来由于忙其它的东西就不怎么刷题了。</p>
-<p>这道题是判断链表是否是回文，需要0(N)时间复杂度，0(1)空间复杂度。<br>阶梯思路想到了比较简单，先翻转一半链表，再双指针判断即可。</p>
-<p>例如：链表的如下<br>1-&gt;2-&gt;3-&gt;3-&gt;2-&gt;1，总共有6个元素，可以翻转最后三个元素，得到1-&gt;2-&gt;3-&gt;1-&gt;2-&gt;3。<br>设定两个指针分别指向前半部分的起点与后半部分的起点，再依次比较节点上的元素是否相同即可。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/19/Leetcode-Palindrome-Linked-List/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1607,7 +1604,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
