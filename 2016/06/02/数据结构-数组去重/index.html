@@ -85,18 +85,18 @@
 
 
 <meta name="description" content="给定一个数组，求去掉重复元素后数组的长度。
-思路:双指针，设定两个指针i,j分别指向数组的初始的两个元素，当a[i] != a[j],累加j,i保持不变。当a[i]==a[j]，累加i,将a[i]=a[j],再累加j。举例：A=[1,1,2,3,3,4](1) i=0,j=1. a[i]==a[j],j++                   数组元素未变(2) i=0,j=2, a[i]!=a[">
+思路:双指针，设定两个指针i,j分别指向数组的初始的两个元素，当a[i] != a[j],累加j,i保持不变。当a[i]==a[j]，累加i,将a[i]=a[j],再累加j。双指针的思想，O(n)的时间复杂度。举例：A=[1,1,2,3,3,4](1) i=0,j=1. a[i]==a[j],j++                   数组元素未变(2)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构-数组去重">
 <meta property="og:url" content="http://dreamwuhi.github.io/2016/06/02/数据结构-数组去重/index.html">
 <meta property="og:site_name" content="Dream's Blog">
 <meta property="og:description" content="给定一个数组，求去掉重复元素后数组的长度。
-思路:双指针，设定两个指针i,j分别指向数组的初始的两个元素，当a[i] != a[j],累加j,i保持不变。当a[i]==a[j]，累加i,将a[i]=a[j],再累加j。举例：A=[1,1,2,3,3,4](1) i=0,j=1. a[i]==a[j],j++                   数组元素未变(2) i=0,j=2, a[i]!=a[">
-<meta property="og:updated_time" content="2016-06-02T11:44:03.808Z">
+思路:双指针，设定两个指针i,j分别指向数组的初始的两个元素，当a[i] != a[j],累加j,i保持不变。当a[i]==a[j]，累加i,将a[i]=a[j],再累加j。双指针的思想，O(n)的时间复杂度。举例：A=[1,1,2,3,3,4](1) i=0,j=1. a[i]==a[j],j++                   数组元素未变(2)">
+<meta property="og:updated_time" content="2016-06-02T11:46:59.151Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构-数组去重">
 <meta name="twitter:description" content="给定一个数组，求去掉重复元素后数组的长度。
-思路:双指针，设定两个指针i,j分别指向数组的初始的两个元素，当a[i] != a[j],累加j,i保持不变。当a[i]==a[j]，累加i,将a[i]=a[j],再累加j。举例：A=[1,1,2,3,3,4](1) i=0,j=1. a[i]==a[j],j++                   数组元素未变(2) i=0,j=2, a[i]!=a[">
+思路:双指针，设定两个指针i,j分别指向数组的初始的两个元素，当a[i] != a[j],累加j,i保持不变。当a[i]==a[j]，累加i,将a[i]=a[j],再累加j。双指针的思想，O(n)的时间复杂度。举例：A=[1,1,2,3,3,4](1) i=0,j=1. a[i]==a[j],j++                   数组元素未变(2)">
 
 
 
@@ -343,7 +343,7 @@
 
       
         <p>给定一个数组，求去掉重复元素后数组的长度。</p>
-<p>思路:双指针，设定两个指针i,j分别指向数组的初始的两个元素，当a[i] != a[j],累加j,i保持不变。当a[i]==a[j]，累加i,将a[i]=a[j],再累加j。<br>举例：<br>A=[1,1,2,3,3,4]<br>(1) i=0,j=1. a[i]==a[j],j++                   数组元素未变<br>(2) i=0,j=2, a[i]!=a[j],i++,a[i]=a[j],j++. 数组变为A[1,2,2,3,3,4]<br>(3) i=1,j=3, a[i]!=a[j],i++,a[i]=a[j],j++. 数组变为A[1,2,3,3,3,4]<br>(4) i=2,j=4, a[i]==a[j],j++,               数组元素未变<br>(5) i=2,j=5, a[i]!=a[j],i++,a[i]=a[j],j++, 数组变为A[1,2,3,4,3,4]<br>(6) j=6 结束循环，此时的i+1即是去重后元素的个数。</p>
+<p>思路:双指针，设定两个指针i,j分别指向数组的初始的两个元素，当a[i] != a[j],累加j,i保持不变。当a[i]==a[j]，累加i,将a[i]=a[j],再累加j。<br>双指针的思想，O(n)的时间复杂度。<br>举例：<br>A=[1,1,2,3,3,4]<br>(1) i=0,j=1. a[i]==a[j],j++                   数组元素未变<br>(2) i=0,j=2, a[i]!=a[j],i++,a[i]=a[j],j++. 数组变为A[1,2,2,3,3,4]<br>(3) i=1,j=3, a[i]!=a[j],i++,a[i]=a[j],j++. 数组变为A[1,2,3,3,3,4]<br>(4) i=2,j=4, a[i]==a[j],j++,               数组元素未变<br>(5) i=2,j=5, a[i]!=a[j],i++,a[i]=a[j],j++, 数组变为A[1,2,3,4,3,4]<br>(6) j=6 结束循环，此时的i+1即是去重后元素的个数。</p>
 <p>代码：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">RemeoveDuplicate</span><span class="params">(<span class="keyword">int</span>*a, <span class="keyword">int</span> size)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>,j;</span><br><span class="line">    <span class="keyword">for</span>(j=i+<span class="number">1</span>; j&lt;size; ++j)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i] != a[j])</span><br><span class="line">        &#123;</span><br><span class="line">            a[++i] = a[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return i+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
