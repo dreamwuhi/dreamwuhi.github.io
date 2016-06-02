@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dreamwuhi.github.io/"/>
-  <updated>2016-05-31T11:30:12.543Z</updated>
+  <updated>2016-06-02T11:44:03.808Z</updated>
   <id>http://dreamwuhi.github.io/</id>
   
   <author>
@@ -14,6 +14,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数据结构-数组去重</title>
+    <link href="http://dreamwuhi.github.io/2016/06/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/"/>
+    <id>http://dreamwuhi.github.io/2016/06/02/数据结构-数组去重/</id>
+    <published>2016-06-02T11:22:05.000Z</published>
+    <updated>2016-06-02T11:44:03.808Z</updated>
+    
+    <content type="html">&lt;p&gt;给定一个数组，求去掉重复元素后数组的长度。&lt;/p&gt;
+&lt;p&gt;思路:双指针，设定两个指针i,j分别指向数组的初始的两个元素，当a[i] != a[j],累加j,i保持不变。当a[i]==a[j]，累加i,将a[i]=a[j],再累加j。&lt;br&gt;举例：&lt;br&gt;A=[1,1,2,3,3,4]&lt;br&gt;(1) i=0,j=1. a[i]==a[j],j++                   数组元素未变&lt;br&gt;(2) i=0,j=2, a[i]!=a[j],i++,a[i]=a[j],j++. 数组变为A[1,2,2,3,3,4]&lt;br&gt;(3) i=1,j=3, a[i]!=a[j],i++,a[i]=a[j],j++. 数组变为A[1,2,3,3,3,4]&lt;br&gt;(4) i=2,j=4, a[i]==a[j],j++,               数组元素未变&lt;br&gt;(5) i=2,j=5, a[i]!=a[j],i++,a[i]=a[j],j++, 数组变为A[1,2,3,4,3,4]&lt;br&gt;(6) j=6 结束循环，此时的i+1即是去重后元素的个数。&lt;/p&gt;
+&lt;p&gt;代码：&lt;br&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;RemeoveDuplicate&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;*a, &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; size)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i=&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,j;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(j=i+&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;; j&amp;lt;size; ++j)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(a[i] != a[j])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            a[++i] = a[j];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return i+&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;给定一个数组，求去掉重复元素后数组的长度。&lt;/p&gt;
+&lt;p&gt;思路:双指针，设定两个指针i,j分别指向数组的初始的两个元素，当a[i] != a[j],累加j,i保持不变。当a[i]==a[j]，累加i,将a[i]=a[j],再累加j。&lt;br&gt;举例：&lt;br&gt;A=[1,1,2,3
+    
+    </summary>
+    
+      <category term="数据结构" scheme="http://dreamwuhi.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    
+      <category term="数据结构" scheme="http://dreamwuhi.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode-Range Sum Query 2D immutable</title>
@@ -615,9 +641,9 @@
       <category term="QQ界面开发" scheme="http://dreamwuhi.github.io/categories/QQ%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="Win32" scheme="http://dreamwuhi.github.io/tags/Win32/"/>
-    
       <category term="duilib" scheme="http://dreamwuhi.github.io/tags/duilib/"/>
+    
+      <category term="Win32" scheme="http://dreamwuhi.github.io/tags/Win32/"/>
     
   </entry>
   
@@ -695,9 +721,9 @@
       <category term="微信界面开发" scheme="http://dreamwuhi.github.io/categories/%E5%BE%AE%E4%BF%A1%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="Win32" scheme="http://dreamwuhi.github.io/tags/Win32/"/>
-    
       <category term="duilib" scheme="http://dreamwuhi.github.io/tags/duilib/"/>
+    
+      <category term="Win32" scheme="http://dreamwuhi.github.io/tags/Win32/"/>
     
   </entry>
   

@@ -266,6 +266,137 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/02/数据结构-数组去重/" itemprop="url">
+                  数据结构-数组去重
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-02T19:22:05+08:00" content="2016-06-02">
+              2016-06-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/02/数据结构-数组去重/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/数据结构-数组去重/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/06/02/数据结构-数组去重/" class="leancloud_visitors" data-flag-title="数据结构-数组去重">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>给定一个数组，求去掉重复元素后数组的长度。</p>
+<p>思路:双指针，设定两个指针i,j分别指向数组的初始的两个元素，当a[i] != a[j],累加j,i保持不变。当a[i]==a[j]，累加i,将a[i]=a[j],再累加j。<br>举例：<br>A=[1,1,2,3,3,4]<br>(1) i=0,j=1. a[i]==a[j],j++                   数组元素未变<br>(2) i=0,j=2, a[i]!=a[j],i++,a[i]=a[j],j++. 数组变为A[1,2,2,3,3,4]<br>(3) i=1,j=3, a[i]!=a[j],i++,a[i]=a[j],j++. 数组变为A[1,2,3,3,3,4]<br>(4) i=2,j=4, a[i]==a[j],j++,               数组元素未变<br>(5) i=2,j=5, a[i]!=a[j],i++,a[i]=a[j],j++, 数组变为A[1,2,3,4,3,4]<br>(6) j=6 结束循环，此时的i+1即是去重后元素的个数。</p>
+<p>代码：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">RemeoveDuplicate</span><span class="params">(<span class="keyword">int</span>*a, <span class="keyword">int</span> size)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>,j;</span><br><span class="line">    <span class="keyword">for</span>(j=i+<span class="number">1</span>; j&lt;size; ++j)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i] != a[j])</span><br><span class="line">        &#123;</span><br><span class="line">            a[++i] = a[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return i+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/31/Leetcode-Range-Sum-Query-2D-immutable/" itemprop="url">
                   Leetcode-Range Sum Query 2D immutable
                 </a>
@@ -1431,137 +1562,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/14/网易面试之Windows开发实习/" itemprop="url">
-                  网易面试之Windows开发实习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-14T21:45:22+08:00" content="2016-04-14">
-              2016-04-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/面试/" itemprop="url" rel="index">
-                    <span itemprop="name">面试</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/14/网易面试之Windows开发实习/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/14/网易面试之Windows开发实习/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/04/14/网易面试之Windows开发实习/" class="leancloud_visitors" data-flag-title="网易面试之Windows开发实习">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>今天完成了人生中的第一次正规面试，貌似来的真的太晚了。本人半路出家，本科四年只学过C语言，考研那会才真正开始踏入CS专业的道路。<br>研一刚进来的时候，那叫一个菜啊，真的菜。连VS2010才从研一的时候开始用，以前都用VC6.0，真是呵呵哒了。自己的研究方向是图像处理，啥都不知道，先从Opencv自学开始，自己慢慢地摸索，虽然进度很慢，但是到现在为止自己感觉真的是进步蛮大的。<br>研一，自学了数据结构，Leetcode刷了一大半，那时只剩30道左右没又刷了。自学了MFC,写了一个图书馆管理系统。积累了一些图形图像的基本知识及相关机器学习的算法。<br>研二，重点学了Linux,深入C++的理解，看了《C++ Primer》，《Effective C++》,&lt;&lt;深度探索C++对象模型&gt;&gt;，《C和指针》。<br>通过网易云课堂，看了很多择善教育的Win32编程视频，随后自己开始Windows编程的学习，主要看了《Windows程序设计》上下版，《Windows核心编程》<br>对了，最重要的是着重了解Duilib开源框架，这个是用C++，在Win32上封装的一个UI库。写界面真的是比用原生Win32或MFC开发简单了很多倍，重点还更漂亮！<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/14/网易面试之Windows开发实习/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1607,7 +1607,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
