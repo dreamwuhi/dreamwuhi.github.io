@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dreamwuhi.github.io/"/>
-  <updated>2016-06-02T12:58:38.040Z</updated>
+  <updated>2016-06-06T13:26:40.438Z</updated>
   <id>http://dreamwuhi.github.io/</id>
   
   <author>
@@ -14,6 +14,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>最大公约数</title>
+    <link href="http://dreamwuhi.github.io/2016/06/06/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/"/>
+    <id>http://dreamwuhi.github.io/2016/06/06/最大公约数/</id>
+    <published>2016-06-06T13:06:28.000Z</published>
+    <updated>2016-06-06T13:26:40.438Z</updated>
+    
+    <content type="html">&lt;p&gt;这几天做了计蒜客编程比赛，被一道题目卡了很久，辗转很久，找管理看了源码后，感悟非ACM选手，写算法题真的是会丧智啊！！&lt;br&gt;不过呢，积累点知识也是不错的，毕竟再过几个月还要参加校招，肯定回有所帮助的。ps,刷题真的超级费时间哦~~&lt;/p&gt;
+&lt;p&gt;今天，写点关于最大公约数的知识点，这个是很常见的文题了，一般的算法题绝对不会赤裸裸的考你最大公约数，不过有些题目是会用到的。&lt;/p&gt;
+&lt;p&gt;说到最大公约数，不知道欧几里得算法，想必也有耳闻吧。哈哈，博主其实就是后者啦。数学渣~~~&lt;br&gt;简单来说下这个定理。&lt;br&gt;先给出结论：gcd(a,b) = gcd(b,a mod b); gcd表示求最大公约数。&lt;br&gt;证明：任意的数a可以写成 a = kb + r,其中k = a/b,r = a%b&lt;br&gt;那么，r = a - kb.&lt;br&gt;假设，d是a,b的最大公约数。即d也是r的公约数&lt;br&gt;所以，gcd(a,b) = gcd(b,r);&lt;/p&gt;
+&lt;p&gt;代码：&lt;br&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;gcd&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; a, &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; b)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return b==&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; ? a ? gcd(b,a%b); &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这几天做了计蒜客编程比赛，被一道题目卡了很久，辗转很久，找管理看了源码后，感悟非ACM选手，写算法题真的是会丧智啊！！&lt;br&gt;不过呢，积累点知识也是不错的，毕竟再过几个月还要参加校招，肯定回有所帮助的。ps,刷题真的超级费时间哦~~&lt;/p&gt;
+&lt;p&gt;今天，写点关于最大公约数的
+    
+    </summary>
+    
+      <category term="数据结构" scheme="http://dreamwuhi.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    
+      <category term="数据结构" scheme="http://dreamwuhi.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
   
   <entry>
     <title>数据结构-三数之和为零</title>

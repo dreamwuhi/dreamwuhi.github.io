@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Leetcode," />
+  <meta name="keywords" content="数据结构," />
 
 
 
@@ -84,16 +84,22 @@
 
 
 
-<meta name="description" content="本题的题意是给定一个整数N，将其拆分为至少两个正数，且这些正数的和为N，求所有拆分种类中这些正数的乘积最大！思路，枚举发现规律。如下：7 = 3+2+2  F(7)=3^1  2^2 = 12     8 = 3+3+2  F(8)=3^2  2^1 = 18     9 = 3+3+3  F(9)=3^3  2^0 = 27     10 = 3+3+2+2 F(10)=3^2  2^2 = 3">
+<meta name="description" content="这几天做了计蒜客编程比赛，被一道题目卡了很久，辗转很久，找管理看了源码后，感悟非ACM选手，写算法题真的是会丧智啊！！不过呢，积累点知识也是不错的，毕竟再过几个月还要参加校招，肯定回有所帮助的。ps,刷题真的超级费时间哦~~
+今天，写点关于最大公约数的知识点，这个是很常见的文题了，一般的算法题绝对不会赤裸裸的考你最大公约数，不过有些题目是会用到的。
+说到最大公约数，不知道欧几里得算法，想必也有耳闻">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode-Integer Break">
-<meta property="og:url" content="http://dreamwuhi.github.io/2016/05/29/Leetcode-Integer-Break/index.html">
+<meta property="og:title" content="最大公约数">
+<meta property="og:url" content="http://dreamwuhi.github.io/2016/06/06/最大公约数/index.html">
 <meta property="og:site_name" content="Dream's Blog">
-<meta property="og:description" content="本题的题意是给定一个整数N，将其拆分为至少两个正数，且这些正数的和为N，求所有拆分种类中这些正数的乘积最大！思路，枚举发现规律。如下：7 = 3+2+2  F(7)=3^1  2^2 = 12     8 = 3+3+2  F(8)=3^2  2^1 = 18     9 = 3+3+3  F(9)=3^3  2^0 = 27     10 = 3+3+2+2 F(10)=3^2  2^2 = 3">
-<meta property="og:updated_time" content="2016-05-31T11:35:38.060Z">
+<meta property="og:description" content="这几天做了计蒜客编程比赛，被一道题目卡了很久，辗转很久，找管理看了源码后，感悟非ACM选手，写算法题真的是会丧智啊！！不过呢，积累点知识也是不错的，毕竟再过几个月还要参加校招，肯定回有所帮助的。ps,刷题真的超级费时间哦~~
+今天，写点关于最大公约数的知识点，这个是很常见的文题了，一般的算法题绝对不会赤裸裸的考你最大公约数，不过有些题目是会用到的。
+说到最大公约数，不知道欧几里得算法，想必也有耳闻">
+<meta property="og:updated_time" content="2016-06-06T13:26:40.438Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leetcode-Integer Break">
-<meta name="twitter:description" content="本题的题意是给定一个整数N，将其拆分为至少两个正数，且这些正数的和为N，求所有拆分种类中这些正数的乘积最大！思路，枚举发现规律。如下：7 = 3+2+2  F(7)=3^1  2^2 = 12     8 = 3+3+2  F(8)=3^2  2^1 = 18     9 = 3+3+3  F(9)=3^3  2^0 = 27     10 = 3+3+2+2 F(10)=3^2  2^2 = 3">
+<meta name="twitter:title" content="最大公约数">
+<meta name="twitter:description" content="这几天做了计蒜客编程比赛，被一道题目卡了很久，辗转很久，找管理看了源码后，感悟非ACM选手，写算法题真的是会丧智啊！！不过呢，积累点知识也是不错的，毕竟再过几个月还要参加校招，肯定回有所帮助的。ps,刷题真的超级费时间哦~~
+今天，写点关于最大公约数的知识点，这个是很常见的文题了，一般的算法题绝对不会赤裸裸的考你最大公约数，不过有些题目是会用到的。
+说到最大公约数，不知道欧几里得算法，想必也有耳闻">
 
 
 
@@ -111,7 +117,7 @@
   };
 </script>
 
-  <title> Leetcode-Integer Break | Dream's Blog </title>
+  <title> 最大公约数 | Dream's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -264,7 +270,7 @@
             
             
               
-                Leetcode-Integer Break
+                最大公约数
               
             
           </h1>
@@ -276,8 +282,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-29T14:25:54+08:00" content="2016-05-29">
-              2016-05-29
+            <time itemprop="dateCreated" datetime="2016-06-06T21:06:28+08:00" content="2016-06-06">
+              2016-06-06
             </time>
           </span>
 
@@ -290,8 +296,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">Leetcode</span>
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
                   </a>
                 </span>
 
@@ -306,8 +312,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/29/Leetcode-Integer-Break/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/29/Leetcode-Integer-Break/" itemprop="commentsCount"></span>
+                <a href="/2016/06/06/最大公约数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/06/最大公约数/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -317,7 +323,7 @@
 
           
           
-             <span id="/2016/05/29/Leetcode-Integer-Break/" class="leancloud_visitors" data-flag-title="Leetcode-Integer Break">
+             <span id="/2016/06/06/最大公约数/" class="leancloud_visitors" data-flag-title="最大公约数">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -339,7 +345,10 @@
       
 
       
-        <p>本题的题意是给定一个整数N，将其拆分为至少两个正数，且这些正数的和为N，求所有拆分种类中这些正数的乘积最大！<br>思路，枚举发现规律。<br>如下：7 = 3+2+2  F(7)=3^1 <em> 2^2 = 12<br>     8 = 3+3+2  F(8)=3^2 </em> 2^1 = 18<br>     9 = 3+3+3  F(9)=3^3 <em> 2^0 = 27<br>     10 = 3+3+2+2 F(10)=3^2 </em> 2^2 = 36<br>可以发现，N = 3a+2b,(a,b为数字3，数字2的个数)，F(N)=3^a+2^b。因此，可以先通过N/3求得有多少个3构成，如果余数为0，则没有数字2；余数为2，则有一个2；余数为1，则数字3减少1个，添加两个2（如10=3+3+3+1 转变成 3+3+2+2）。<br>最后考虑边缘条件，当N=2，N=3的情况。<br><a id="more"></a><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">integerBreak</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	    <span class="keyword">if</span>(n==<span class="number">2</span>) return <span class="number">1</span>;<span class="comment">//边缘情况</span></span><br><span class="line">		<span class="keyword">if</span>(n==<span class="number">3</span>) return <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span>(n % <span class="number">3</span> == <span class="number">0</span>)		<span class="comment">//余数为0</span></span><br><span class="line">			return (int)<span class="built_in">pow</span>(<span class="number">3.0</span>,n/<span class="number">3</span>);</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(n % <span class="number">3</span> == <span class="number">2</span>) <span class="comment">//余数为2</span></span><br><span class="line">			return (int)<span class="built_in">pow</span>(<span class="number">3.0</span>,n/<span class="number">3</span>) * <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">else</span>				<span class="comment">//余数为1</span></span><br><span class="line">			return (int)<span class="built_in">pow</span>(<span class="number">3.0</span>,n/<span class="number">3</span><span class="number">-1</span>) * <span class="number">4</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+        <p>这几天做了计蒜客编程比赛，被一道题目卡了很久，辗转很久，找管理看了源码后，感悟非ACM选手，写算法题真的是会丧智啊！！<br>不过呢，积累点知识也是不错的，毕竟再过几个月还要参加校招，肯定回有所帮助的。ps,刷题真的超级费时间哦~~</p>
+<p>今天，写点关于最大公约数的知识点，这个是很常见的文题了，一般的算法题绝对不会赤裸裸的考你最大公约数，不过有些题目是会用到的。</p>
+<p>说到最大公约数，不知道欧几里得算法，想必也有耳闻吧。哈哈，博主其实就是后者啦。数学渣~~~<br>简单来说下这个定理。<br>先给出结论：gcd(a,b) = gcd(b,a mod b); gcd表示求最大公约数。<br>证明：任意的数a可以写成 a = kb + r,其中k = a/b,r = a%b<br>那么，r = a - kb.<br>假设，d是a,b的最大公约数。即d也是r的公约数<br>所以，gcd(a,b) = gcd(b,r);</p>
+<p>代码：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	return b==<span class="number">0</span> ? a ? gcd(b,a%b); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -361,7 +370,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Leetcode/" rel="tag">#Leetcode</a>
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
           
         </div>
       
@@ -370,17 +379,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/28/恒生面试/" rel="next" title="恒生面试">
-                <i class="fa fa-chevron-left"></i> 恒生面试
+              <a href="/2016/06/02/数据结构-三数之和为零/" rel="next" title="数据结构-三数之和为零">
+                <i class="fa fa-chevron-left"></i> 数据结构-三数之和为零
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/29/Leetcode-Summary-Ranges/" rel="prev" title="Leetcode-Summary Ranges">
-                Leetcode-Summary Ranges <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -406,8 +411,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/29/Leetcode-Integer-Break/"
-           data-title="Leetcode-Integer Break" data-url="http://dreamwuhi.github.io/2016/05/29/Leetcode-Integer-Break/">
+      <div class="ds-thread" data-thread-key="2016/06/06/最大公约数/"
+           data-title="最大公约数" data-url="http://dreamwuhi.github.io/2016/06/06/最大公约数/">
       </div>
     
   </div>
