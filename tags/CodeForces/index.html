@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Win32," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,49 +84,15 @@
 
 
 
-<meta name="description" content="窗口程序创建的过程
-创建窗口类1WNDCLASS wndclass;
-
-注册窗口类1RegisterClass(&amp;amp;wndclass);
-
-创建窗口1hwnd = CreateWindow(...);
-
-显示窗口1ShowWindow(hwnd,iCmdShow);
-
-更新窗口1UpdateWindow(hwnd);  //产生第一条WM_PATINT消息
-
-消息循环12345while(G">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Windows程序设计基础">
-<meta property="og:url" content="http://dreamwuhi.github.io/2016/04/10/Windows程序设计基础/index.html">
+<meta name="description" content="To be a strong man!">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dream's Blog">
+<meta property="og:url" content="http://dreamwuhi.github.io/tags/CodeForces/index.html">
 <meta property="og:site_name" content="Dream's Blog">
-<meta property="og:description" content="窗口程序创建的过程
-创建窗口类1WNDCLASS wndclass;
-
-注册窗口类1RegisterClass(&amp;amp;wndclass);
-
-创建窗口1hwnd = CreateWindow(...);
-
-显示窗口1ShowWindow(hwnd,iCmdShow);
-
-更新窗口1UpdateWindow(hwnd);  //产生第一条WM_PATINT消息
-
-消息循环12345while(G">
-<meta property="og:updated_time" content="2016-05-31T11:42:04.481Z">
+<meta property="og:description" content="To be a strong man!">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Windows程序设计基础">
-<meta name="twitter:description" content="窗口程序创建的过程
-创建窗口类1WNDCLASS wndclass;
-
-注册窗口类1RegisterClass(&amp;amp;wndclass);
-
-创建窗口1hwnd = CreateWindow(...);
-
-显示窗口1ShowWindow(hwnd,iCmdShow);
-
-更新窗口1UpdateWindow(hwnd);  //产生第一条WM_PATINT消息
-
-消息循环12345while(G">
+<meta name="twitter:title" content="Dream's Blog">
+<meta name="twitter:description" content="To be a strong man!">
 
 
 
@@ -144,7 +110,7 @@
   };
 </script>
 
-  <title> Windows程序设计基础 | Dream's Blog </title>
+  <title> 标签: CodeForces | Dream's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -165,7 +131,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -276,181 +242,46 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Windows程序设计基础
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-10T20:02:14+08:00" content="2016-04-10">
-              2016-04-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Windows开发/" itemprop="url" rel="index">
-                    <span itemprop="name">Windows开发</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/10/Windows程序设计基础/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/10/Windows程序设计基础/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/04/10/Windows程序设计基础/" class="leancloud_visitors" data-flag-title="Windows程序设计基础">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h2 id="窗口程序创建的过程"><a href="#窗口程序创建的过程" class="headerlink" title="窗口程序创建的过程"></a>窗口程序创建的过程</h2><hr>
-<h3 id="创建窗口类"><a href="#创建窗口类" class="headerlink" title="创建窗口类"></a>创建窗口类</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WNDCLASS wndclass;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="注册窗口类"><a href="#注册窗口类" class="headerlink" title="注册窗口类"></a>注册窗口类</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RegisterClass(&amp;wndclass);</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="创建窗口"><a href="#创建窗口" class="headerlink" title="创建窗口"></a>创建窗口</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hwnd = CreateWindow(...);</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="显示窗口"><a href="#显示窗口" class="headerlink" title="显示窗口"></a>显示窗口</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ShowWindow(hwnd,iCmdShow);</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="更新窗口"><a href="#更新窗口" class="headerlink" title="更新窗口"></a>更新窗口</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UpdateWindow(hwnd);  <span class="comment">//产生第一条WM_PATINT消息</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="消息循环"><a href="#消息循环" class="headerlink" title="消息循环"></a>消息循环</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(GetMessage(&amp;msg,NULL,<span class="number">0</span>,<span class="number">0</span>))  <span class="comment">//获取消息，只要消息类型不为WM_QUIT，返回值是非零值</span></span><br><span class="line">&#123;</span><br><span class="line">	TranslateMessgae(&amp;msg);     <span class="comment">//翻译消息</span></span><br><span class="line">	DispatchMessage(&amp;msg);      <span class="comment">//分发消息到窗口过程</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<a id="more"></a>
-<h3 id="窗口过程"><a href="#窗口过程" class="headerlink" title="窗口过程"></a>窗口过程</h3><p>窗口过程在处理消息时，必须返回0。窗口过程不予处理的所有消息应该被DefWindowProc函数处理</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LRESULT CALLBACK <span class="title">WinProctor</span><span class="params">(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)</span></span>;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SendMessage(...);<span class="comment">//程序可以直接调用自己的窗口过程</span></span><br></pre></td></tr></table></figure>
-<p><strong>总结：窗口过程与一个窗口类相关联，窗口类是程序调用RegisterClass注册的。基于该类创建的窗口使用这个窗口过程来处理窗口的所有消息。Windows通过调用窗口过程来给窗口发送一个消息</strong></p>
-<hr>
-<h2 id="窗口消息"><a href="#窗口消息" class="headerlink" title="窗口消息"></a>窗口消息</h2><h3 id="WM-PAINT"><a href="#WM-PAINT" class="headerlink" title="WM_PAINT"></a>WM_PAINT</h3><p>该消息使得客户区域重绘，以下几种情况会导致客户区域重绘，即产生WM_PAINT消息。<br>1、UpdateWindow(hwnd);<br>2、放大或者是缩小窗口（窗口类风格具有CS_HREDRAW,CS_VREDRAW）。<br>3、窗口最小化后，再复原。<br>4、窗口被其他窗口覆盖后，再复原。<br>5、使用ScrollWindow或ScrollDC函数滚动客户区的一部分。<br>6、使用InvalidateRect或InvalidateRgn函数显示产生WM_PAINT消息。</p>
-<hr>
-<h3 id="WM-DESTROY"><a href="#WM-DESTROY" class="headerlink" title="WM_DESTROY"></a>WM_DESTROY</h3><p>该消息使得窗口清除关闭。一般在获取该消息后，添加PostQuitMessage(0); 即，在消息队列中添加一条WM_QUIT消息。上文提到，消息循环中当遇到WM_QUIT消息后，就退出循环，结束程序。</p>
-
-      
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        CodeForces
+        <small>标签</small>
+      </h2>
     </div>
 
-    <div>
+    
       
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-      
-    </div>
-
-    <div>
-      
+            <a class="post-title-link" href="/2016/06/14/CF-679A-Bear-and-Prime-100/" itemprop="url">
+              
+                <span itemprop="name">CF-679A-Bear-and-Prime-100</span>
+              
+            </a>
         
+      </h1>
 
-      
-    </div>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-06-14T10:27:09+08:00"
+              content="2016-06-14" >
+          06-14
+        </time>
+      </div>
 
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Win32/" rel="tag">#Win32</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/04/10/duilib开发微信界面/" rel="next" title="duilib开发微信界面">
-                <i class="fa fa-chevron-left"></i> duilib开发微信界面
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/10/duilib开发QQ界面/" rel="prev" title="duilib开发QQ界面">
-                duilib开发QQ界面 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
+    
   </div>
+
+  
 
 
           </div>
@@ -458,14 +289,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/04/10/Windows程序设计基础/"
-           data-title="Windows程序设计基础" data-url="http://dreamwuhi.github.io/2016/04/10/Windows程序设计基础/">
-      </div>
-    
-  </div>
-
 
         </div>
         
@@ -485,17 +308,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/1.png"
@@ -565,17 +379,6 @@
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#窗口程序创建的过程"><span class="nav-number">1.</span> <span class="nav-text">窗口程序创建的过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建窗口类"><span class="nav-number">1.1.</span> <span class="nav-text">创建窗口类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注册窗口类"><span class="nav-number">1.2.</span> <span class="nav-text">注册窗口类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建窗口"><span class="nav-number">1.3.</span> <span class="nav-text">创建窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示窗口"><span class="nav-number">1.4.</span> <span class="nav-text">显示窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新窗口"><span class="nav-number">1.5.</span> <span class="nav-text">更新窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息循环"><span class="nav-number">1.6.</span> <span class="nav-text">消息循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#窗口过程"><span class="nav-number">1.7.</span> <span class="nav-text">窗口过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#窗口消息"><span class="nav-number">2.</span> <span class="nav-text">窗口消息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WM-PAINT"><span class="nav-number">2.1.</span> <span class="nav-text">WM_PAINT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WM-DESTROY"><span class="nav-number">2.2.</span> <span class="nav-text">WM_DESTROY</span></a></li></ol></li></ol></div>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -679,10 +482,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
 
   
 

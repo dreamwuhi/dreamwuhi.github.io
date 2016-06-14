@@ -266,6 +266,119 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/14/CF-679A-Bear-and-Prime-100/" itemprop="url">
+                  CF-679A-Bear-and-Prime-100
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-14T10:27:09+08:00" content="2016-06-14">
+              2016-06-14
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/14/CF-679A-Bear-and-Prime-100/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/14/CF-679A-Bear-and-Prime-100/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/06/14/CF-679A-Bear-and-Prime-100/" class="leancloud_visitors" data-flag-title="CF-679A-Bear-and-Prime-100">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>题意：有一个隐藏数字N，2&lt;=N&lt;=100。要求在20次查询后，确定N是否为支数。<br>每一次你可以输出一个数字a，系统会判定a是否为N的除数（YES or NO）。</p>
+<p>思路：N只有两种可能，合数或质数。<br>其中，质数是的除数只有1和本身。合数的除数至少有3个（1，本身，K）。<br>因此，合数=质数*质数。<br>所以，可以枚举小于50的所有质数，依次询问这些质数是否为N的除数，如果是除数的次数&gt;=2，则即可判定为合数。</p>
+<p>注意点：2^n,3^n,5^n,7^n,都是有相同的质数乘积得到。所以按照上面的逻辑判断后，最后得到次数只有1次。<br>显然是错误的，因此需要再添加4，9，15，49。<br>因此，最会需要查询的数字包括[2,3,4,5,7,9,11,13,17,19,23,25,29,31,37,41,43,47,49];</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="comment">//freopen("in.txt", "r", stdin);</span></span><br><span class="line">	<span class="keyword">int</span> num[] = &#123;<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">11</span>,<span class="number">13</span>,<span class="number">17</span>,<span class="number">19</span>,<span class="number">23</span>,<span class="number">25</span>,<span class="number">29</span>,<span class="number">31</span>,<span class="number">37</span>,<span class="number">41</span>,<span class="number">43</span>,<span class="number">47</span>,<span class="number">49</span>&#125;;</span><br><span class="line">	<span class="built_in">string</span> str;</span><br><span class="line">	<span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">19</span>; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;num[i]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;str;</span><br><span class="line">		<span class="keyword">if</span>(str == <span class="string">"yes"</span>)</span><br><span class="line">			cnt++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(cnt &gt;=<span class="number">2</span>)</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"composite"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"prime"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">//fclose(stdin);  </span></span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/12/C++刷题笔记/" itemprop="url">
                   C++刷题笔记
                 </a>
@@ -355,6 +468,7 @@
 <p>8、关于int最大值，最小值的表示方法<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>&lt;&lt;<span class="number">31</span>;            <span class="comment">//32位int最小值</span></span><br><span class="line"><span class="keyword">int</span> b = <span class="keyword">int</span>(<span class="number">1</span>&lt;&lt;<span class="number">31</span>) - <span class="number">1</span>;	  <span class="comment">//32位int最大值</span></span><br></pre></td></tr></table></figure></p>
 <p>9、关于大数<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"><span class="keyword">const</span> LL Inf = (LL)<span class="number">1e18</span>;</span><br></pre></td></tr></table></figure></p>
 <p>10、个人出WA后，犯的错误总结<br>（1）、逻辑错误（例如：微软员工福利，把结果放在了循环里面）<br>（2）、题意理解错误（仔细读题）<br>（3）、容易被样例误导（例如，腾讯的简单游戏，样例只有两组护卫队，其实实际数据有n支护卫队，导致逻辑错误）<br>（4）、几何题（把数学公式推导完毕后，再写）<br>（5）、关于图、树的问题（建树，建图比较重要）<br>（6）、对于小规模的题，一般暴力枚举可以搞定。</p>
+<p>11、重定向输入输出流<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">freopen(<span class="string">"in.txt"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">freopen(<span class="string">"out.txt"</span>, <span class="string">"W"</span>, <span class="built_in">stdout</span>);</span><br><span class="line">fclose(<span class="built_in">stdin</span>);</span><br><span class="line">fclose(<span class="built_in">stdout</span>);</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -1432,140 +1546,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/23/Leetcode-Minimum-Height-Trees/" itemprop="url">
-                  Leetcode-Minimum Height Trees
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-23T14:10:34+08:00" content="2016-05-23">
-              2016-05-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">Leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/23/Leetcode-Minimum-Height-Trees/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/23/Leetcode-Minimum-Height-Trees/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/05/23/Leetcode-Minimum-Height-Trees/" class="leancloud_visitors" data-flag-title="Leetcode-Minimum Height Trees">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>本题给你一个无向图，其中有n个顶点，n-1条边，因此取其中的任意某顶点作为根，都可以构建成一棵树。那么本题的问题就是在这些树中找出高度最小的树，返回树的根节点；如果有多棵树的高度相同，则返回多个根节点。</p>
-<p>思路1：一开始，我认为最直白的解法就是遍历所有的顶点，以该顶点为根，求此树的高度。最后找出高度最小的树就是答案。此为暴力法，但是暴力一般往往会超时，本题也不例外。所以就得另辟蹊径咯。</p>
-<p>思路2：先找到所有的叶子节点(该顶点只与一个顶点连接，即只有一条边)，再删除所有的叶子节点，再继续找目前的叶子节点，再删除掉。直到找不到叶子节点为止。那么最后一次找到的叶子节点就是所求的根节点。这题算是trick吧，自己多画几个图，或许可以发现这个规律。</p>
-<p>好了，代码如下。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/23/Leetcode-Minimum-Height-Trees/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1611,7 +1591,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1628,7 +1608,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

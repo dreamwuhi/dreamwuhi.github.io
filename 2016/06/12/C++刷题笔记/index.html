@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Dream's Blog">
 <meta property="og:description" content="1、关于大整数问题123long long a;unsigned long long b;cin&amp;gt;&amp;gt;a&amp;gt;&amp;gt;b;
 2、关于输出精度问题123456#include &amp;lt;iomanip.h&amp;gt; int main()&amp;#123;	cout.setf(ios::fixed); 	cout&amp;lt;&amp;lt;&amp;lt;&amp;lt;setprecision(6)&amp;lt;&amp;lt;endl;">
-<meta property="og:updated_time" content="2016-06-13T05:13:13.523Z">
+<meta property="og:updated_time" content="2016-06-13T11:59:59.689Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++刷题笔记">
 <meta name="twitter:description" content="1、关于大整数问题123long long a;unsigned long long b;cin&amp;gt;&amp;gt;a&amp;gt;&amp;gt;b;
@@ -352,6 +352,7 @@
 <p>8、关于int最大值，最小值的表示方法<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>&lt;&lt;<span class="number">31</span>;            <span class="comment">//32位int最小值</span></span><br><span class="line"><span class="keyword">int</span> b = <span class="keyword">int</span>(<span class="number">1</span>&lt;&lt;<span class="number">31</span>) - <span class="number">1</span>;	  <span class="comment">//32位int最大值</span></span><br></pre></td></tr></table></figure></p>
 <p>9、关于大数<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"><span class="keyword">const</span> LL Inf = (LL)<span class="number">1e18</span>;</span><br></pre></td></tr></table></figure></p>
 <p>10、个人出WA后，犯的错误总结<br>（1）、逻辑错误（例如：微软员工福利，把结果放在了循环里面）<br>（2）、题意理解错误（仔细读题）<br>（3）、容易被样例误导（例如，腾讯的简单游戏，样例只有两组护卫队，其实实际数据有n支护卫队，导致逻辑错误）<br>（4）、几何题（把数学公式推导完毕后，再写）<br>（5）、关于图、树的问题（建树，建图比较重要）<br>（6）、对于小规模的题，一般暴力枚举可以搞定。</p>
+<p>11、重定向输入输出流<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">freopen(<span class="string">"in.txt"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">freopen(<span class="string">"out.txt"</span>, <span class="string">"W"</span>, <span class="built_in">stdout</span>);</span><br><span class="line">fclose(<span class="built_in">stdin</span>);</span><br><span class="line">fclose(<span class="built_in">stdout</span>);</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -389,6 +390,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/14/CF-679A-Bear-and-Prime-100/" rel="prev" title="CF-679A-Bear-and-Prime-100">
+                CF-679A-Bear-and-Prime-100 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -460,7 +465,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -477,7 +482,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
